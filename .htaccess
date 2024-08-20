@@ -1,6 +1,6 @@
 RewriteEngine On
-RewriteBase /myproject/
+RewriteBase /
 RewriteRule ^index\.html$ – [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /myproject/index.html [L]
+RewriteRule . /index.html [L]
