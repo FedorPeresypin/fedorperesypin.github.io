@@ -1,9 +1,0 @@
-<svg width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g opacity="0.9">
-<rect width="30" height="28" fill="white"/>
-<rect x="18.5" y="7.5" width="4.14286" height="4.14286" rx="2.07143" stroke="#F41B1B"/>
-<path d="M6.85718 9.57129H16.2857" stroke="#F41B1B" stroke-linecap="round"/>
-<rect x="10.6428" y="18.5" width="4.14286" height="4.14286" rx="2.07143" transform="rotate(-180 10.6428 18.5)" stroke="#F41B1B"/>
-<path d="M22.2856 16.4287L12.8571 16.4287" stroke="#F41B1B" stroke-linecap="round"/>
-</g>
-</svg>
