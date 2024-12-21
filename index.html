@@ -1,69 +1,59 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Portfolio</title>
-    <script
-      src="https://kit.fontawesome.com/8273bc6379.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="css/style.min.css" />
-  </head>
-  <body>
-    <section class="main" id="main">
-      <div class="sidepanel">
-        <div class="sidepanel__title">My profile and contacts</div>
-        <div class="sidepanel__social">
-          <a class="sidepanel__link" href="https://vk.com/peresypin"
-            ><i class="fab fa-vk"></i
-          ></a>
-          <a class="sidepanel__link" href="https://github.com/FedorPeresypin"
-            ><i class="fab fa-github"></i
-          ></a>
-          <a class="sidepanel__link" href="https://t.me/FedorPeresypin"
-            ><i class="fab fa-telegram"></i
-          ></a>
-        </div>
-      </div>
-      <div class="main__promo">
-        <h1 class="main__title">Hi,<br />I`m Fedor!<br />Frontend developer</h1>
-        <h2 class="main__subtitle">My skills</h2>
-        <div class="main__descr">
-          HTML5, CSS3, SASS/SCSS, Git,Gulp, JavaScript, jQuery, Bootstrap
-        </div>
-      </div>
-      <div class="slider">
-        <div class="slider__content pulse">
-          <a href="pulsometer/pulsometer.html"
-            ><div class="slider__title">Pulsometer</div>
-            <div class="slider__data">October 2020</div></a
-          >
-        </div>
-        <div class="slider__content uber">
-          <a href="uber/uber.html"
-            ><div class="slider__title">Uber site</div>
-            <div class="slider__data">September 2020</div></a
-          >
-        </div>
-        <div class="slider__content weather">
-          <a href="weather/weather.html"
-            ><div class="slider__title">Weather app</div>
-            <div class="slider__data">January 2021</div></a
-          >
-        </div>
-        <div class="slider__content weather">
-            <a href="web/index.html"
-              ><div class="slider__title">YouCVTest</div>
-              <div class="slider__data">January 2021</div></a
-            >
-          </div>
-      </div>
-    </section>
-    <script src="js/lib/jquery.js"></script>
-    <script src="js/lib/three.r119.min.js"></script>
-    <script src="js/lib/vanta.net.min.js"></script>
-    <script src="js/lib/slick.js"></script>
-    <script src="js/script.js"></script>
-  </body>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="YOUCV">
+  <link rel="apple-touch-icon" href="icons/favicon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>YOUCV</title>
+  <link rel="manifest" href="manifest.json">
+
+  <script>
+    // The value below is injected by flutter build, do not touch.
+    const serviceWorkerVersion = "2113040772";
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="flutter.js" defer></script>
+</head>
+<body>
+  <script>
+    window.addEventListener('load', function(ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+</body>
 </html>
