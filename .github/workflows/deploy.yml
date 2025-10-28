@@ -1,11 +1,11 @@
-name: Flutter Build Latest
+name: Deploy Flutter Web to GitHub Pages
 
 on:
   push:
     branches: [ main, master ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -25,10 +25,14 @@ jobs:
       run: flutter pub get
       
     - name: Build web
-      run: flutter build web --release
+      run: flutter build web --release --base-href /${{ github.event.repository.name }}/
       
-    - name: Upload build
-      uses: actions/upload-artifact@v4
+    - name: Create .nojekyll file
+      run: touch build/web/.nojekyll
+      
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        name: web-app
-        path: build/web
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build/web
+        force_orphan: true  # Очищает ветку перед деплоем
