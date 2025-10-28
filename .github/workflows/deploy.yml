@@ -2,37 +2,51 @@ name: Deploy Flutter Web to GitHub Pages
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Install Flutter (latest stable)
-      run: |
-        git clone https://github.com/flutter/flutter.git --depth 1 -b stable /opt/flutter
-        echo "/opt/flutter/bin" >> $GITHUB_PATH
-        
-    - name: Setup Flutter
-      run: |
-        flutter doctor
-        flutter --version
-        
-    - name: Get dependencies
-      run: flutter pub get
-      
-    - name: Build web
-      run: flutter build web --release --base-href /${{ github.event.repository.name }}/
-      
-    - name: Create .nojekyll file
-      run: touch build/web/.nojekyll
-      
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build/web
-        force_orphan: true  # Очищает ветку перед деплоем
+      - uses: actions/checkout@v4
+
+      - name: Install Flutter
+        run: |
+          git clone https://github.com/flutter/flutter.git --depth 1 -b stable /opt/flutter
+          echo "/opt/flutter/bin" >> $GITHUB_PATH
+
+      - name: Setup Flutter
+        run: |
+          flutter doctor
+          flutter --version
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build web
+        run: flutter build web --release --base-href /
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/web
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
