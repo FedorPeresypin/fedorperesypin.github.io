@@ -21,9 +21,7 @@ class MyApp extends StatelessWidget {
               pageBuilder: (context, state) => CustomTransitionPage(
                 key: state.pageKey,
                 child: const HomePage(),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) =>
-                        FadeTransition(opacity: animation, child: child),
+                transitionsBuilder: _slideFromRightTransition,
               ),
             ),
             GoRoute(
@@ -31,17 +29,7 @@ class MyApp extends StatelessWidget {
               pageBuilder: (context, state) => CustomTransitionPage(
                 key: state.pageKey,
                 child: const ServicesPage(),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  final tween = Tween(
-                    begin: const Offset(0.2, 0),
-                    end: Offset.zero,
-                  ).chain(CurveTween(curve: Curves.easeOut));
-                  return SlideTransition(
-                    position: animation.drive(tween),
-                    child: FadeTransition(opacity: animation, child: child),
-                  );
-                },
+                transitionsBuilder: _slideFromRightTransition,
               ),
             ),
             GoRoute(
@@ -49,17 +37,7 @@ class MyApp extends StatelessWidget {
               pageBuilder: (context, state) => CustomTransitionPage(
                 key: state.pageKey,
                 child: const ProcessPage(),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  final tween = Tween(
-                    begin: const Offset(0, 0.15),
-                    end: Offset.zero,
-                  ).chain(CurveTween(curve: Curves.easeOutBack));
-                  return SlideTransition(
-                    position: animation.drive(tween),
-                    child: child,
-                  );
-                },
+                transitionsBuilder: _slideFromRightTransition,
               ),
             ),
             GoRoute(
@@ -67,9 +45,7 @@ class MyApp extends StatelessWidget {
               pageBuilder: (context, state) => CustomTransitionPage(
                 key: state.pageKey,
                 child: const GalleryPage(),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) =>
-                        ScaleTransition(scale: animation, child: child),
+                transitionsBuilder: _slideFromRightTransition,
               ),
             ),
             GoRoute(
@@ -77,14 +53,14 @@ class MyApp extends StatelessWidget {
               pageBuilder: (context, state) => CustomTransitionPage(
                 key: state.pageKey,
                 child: const ContactsPage(),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) =>
-                        FadeTransition(opacity: animation, child: child),
+                transitionsBuilder: _slideFromRightTransition,
               ),
             ),
           ],
         ),
       ],
+      errorBuilder: (context, state) =>
+          const Scaffold(body: Center(child: Text('Страница не найдена'))),
     );
 
     return MaterialApp.router(
@@ -97,6 +73,12 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
         fontFamily: 'Roboto',
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
         textTheme: const TextTheme(
           displayLarge: TextStyle(
             fontSize: 36,
@@ -123,6 +105,128 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routerConfig: router,
+    );
+  }
+
+  static Widget _slideFromRightTransition(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    const curve = Curves.easeInOutCubic;
+    const duration = Duration(milliseconds: 400);
+
+    // Анимация для текущей страницы (вход)
+    final enterAnimation = CurvedAnimation(parent: animation, curve: curve);
+
+    // Анимация для предыдущей страницы (выход)
+    final exitAnimation = CurvedAnimation(
+      parent: secondaryAnimation,
+      curve: curve,
+    );
+
+    return Stack(
+      children: [
+        // Уходящая страница - плавно исчезает
+        FadeTransition(
+          opacity: ReverseAnimation(exitAnimation),
+          child: Container(color: Theme.of(context).scaffoldBackgroundColor),
+        ),
+
+        // Новая страница - появляется с правой стороны
+        SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(enterAnimation),
+          child: FadeTransition(
+            opacity: Tween<double>(
+              begin: 0.0,
+              end: 1.0,
+            ).animate(enterAnimation),
+            child: child,
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Альтернативная анимация - плавное масштабирование
+  static Widget _scaleTransition(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    const curve = Curves.fastEaseInToSlowEaseOut;
+    const duration = Duration(milliseconds: 500);
+
+    final enterAnimation = CurvedAnimation(parent: animation, curve: curve);
+
+    return Stack(
+      children: [
+        // Фон для предотвращения наложения
+        Container(color: Theme.of(context).scaffoldBackgroundColor),
+
+        // Основная анимация масштабирования
+        ScaleTransition(
+          scale: Tween<double>(begin: 0.9, end: 1.0).animate(enterAnimation),
+          child: FadeTransition(
+            opacity: Tween<double>(
+              begin: 0.0,
+              end: 1.0,
+            ).animate(enterAnimation),
+            child: child,
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Анимация с градиентным переходом
+  static Widget _gradientTransition(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    const curve = Curves.easeInOutQuart;
+
+    final enterAnimation = CurvedAnimation(parent: animation, curve: curve);
+
+    return AnimatedBuilder(
+      animation: enterAnimation,
+      builder: (context, child) {
+        return Stack(
+          children: [
+            // Градиентный фон
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Theme.of(
+                      context,
+                    ).colorScheme.background.withOpacity(enterAnimation.value),
+                    Theme.of(
+                      context,
+                    ).colorScheme.surface.withOpacity(enterAnimation.value),
+                  ],
+                ),
+              ),
+            ),
+
+            // Контент с плавным появлением
+            Transform.translate(
+              offset: Offset(0.0, 50 * (1 - enterAnimation.value)),
+              child: Opacity(opacity: enterAnimation.value, child: child),
+            ),
+          ],
+        );
+      },
+      child: child,
     );
   }
 }
@@ -209,10 +313,9 @@ class AppShell extends StatelessWidget {
                                 gradient: LinearGradient(
                                   colors: [
                                     Theme.of(context).colorScheme.primary,
-                                    Theme.of(context)
-                                        .colorScheme
-                                        .primary
-                                        .withOpacity(0.8),
+                                    Theme.of(
+                                      context,
+                                    ).colorScheme.primary.withOpacity(0.8),
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
@@ -293,7 +396,9 @@ class AppShell extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       Theme.of(context).colorScheme.background,
-                      Theme.of(context).colorScheme.background.withOpacity(0.95),
+                      Theme.of(
+                        context,
+                      ).colorScheme.background.withOpacity(0.95),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -757,8 +862,8 @@ class HomePage extends StatelessWidget {
                       crossAxisCount: isDesktop
                           ? 3
                           : isTablet
-                              ? 2
-                              : 1,
+                          ? 2
+                          : 1,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
                       childAspectRatio: 1.2,
@@ -886,17 +991,17 @@ class _HeroContent extends StatelessWidget {
         Text(
           'Климатические системы для вашего комфорта',
           style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: 16),
         Text(
           'Более 15 лет устанавливаем и обслуживаем кондиционеры в Нижнем Новгороде. Гарантия качества, доступные цены и профессиональный подход.',
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Colors.white.withOpacity(0.9),
-                height: 1.6,
-              ),
+            color: Colors.white.withOpacity(0.9),
+            height: 1.6,
+          ),
         ),
         const SizedBox(height: 32),
         Wrap(
@@ -973,9 +1078,9 @@ class _HeroVisual extends StatelessWidget {
                 Text(
                   'Установка от 6 000 ₽',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -1005,16 +1110,16 @@ class _StatItem extends StatelessWidget {
         Text(
           number,
           style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: 4),
         Text(
           label,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Colors.white.withOpacity(0.8),
-              ),
+            color: Colors.white.withOpacity(0.8),
+          ),
         ),
       ],
     );
@@ -1050,9 +1155,9 @@ class _FeatureChip extends StatelessWidget {
           Text(
             text,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.w500,
-                ),
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),
@@ -1138,8 +1243,8 @@ class _ServicePreviewCard extends StatelessWidget {
           Text(
             service['desc'] as String,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+            ),
           ),
           const Spacer(),
           TextButton(
@@ -1148,9 +1253,9 @@ class _ServicePreviewCard extends StatelessWidget {
             child: Text(
               'Подробнее →',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.w500,
-                  ),
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ],
@@ -1186,9 +1291,9 @@ class _PriceListItem extends StatelessWidget {
           Text(
             '${service['price']} ₽',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
@@ -1261,10 +1366,10 @@ class ServicesPage extends StatelessWidget {
             Text(
               'Полный спектр услуг по установке и обслуживанию климатической техники',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.onBackground.withOpacity(0.6),
-                  ),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onBackground.withOpacity(0.6),
+              ),
             ),
             const SizedBox(height: 40),
 
@@ -1286,10 +1391,9 @@ class ServicesPage extends StatelessWidget {
                             gradient: LinearGradient(
                               colors: [
                                 Theme.of(context).colorScheme.primary,
-                                Theme.of(context)
-                                    .colorScheme
-                                    .primary
-                                    .withOpacity(0.8),
+                                Theme.of(
+                                  context,
+                                ).colorScheme.primary.withOpacity(0.8),
                               ],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
@@ -1309,9 +1413,7 @@ class ServicesPage extends StatelessWidget {
                             children: [
                               Text(
                                 'Полный комплекс работ по монтажу',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall
+                                style: Theme.of(context).textTheme.displaySmall
                                     ?.copyWith(
                                       color: Theme.of(
                                         context,
@@ -1382,10 +1484,9 @@ class ServicesPage extends StatelessWidget {
                             gradient: LinearGradient(
                               colors: [
                                 Theme.of(context).colorScheme.secondary,
-                                Theme.of(context)
-                                    .colorScheme
-                                    .secondary
-                                    .withOpacity(0.8),
+                                Theme.of(
+                                  context,
+                                ).colorScheme.secondary.withOpacity(0.8),
                               ],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
@@ -1405,9 +1506,7 @@ class ServicesPage extends StatelessWidget {
                             children: [
                               Text(
                                 'Комплексное обслуживание систем',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall
+                                style: Theme.of(context).textTheme.displaySmall
                                     ?.copyWith(
                                       color: Theme.of(
                                         context,
@@ -1511,9 +1610,7 @@ class ServicesPage extends StatelessWidget {
                             children: [
                               Text(
                                 'Качественный ремонт любой сложности',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displaySmall
+                                style: Theme.of(context).textTheme.displaySmall
                                     ?.copyWith(color: Colors.orange),
                               ),
                               const SizedBox(height: 12),
@@ -1542,48 +1639,44 @@ class ServicesPage extends StatelessWidget {
                           {
                             'title': 'Ремонт компрессора',
                             'issues': ['Перегрев', 'Шум', 'Не запускается'],
-                            'price': 'от 8 000 ₽'
+                            'price': 'от 8 000 ₽',
                           },
                           {
                             'title': 'Замена вентилятора',
                             'issues': ['Шум', 'Вибрация', 'Не вращается'],
-                            'price': 'от 4 000 ₽'
+                            'price': 'от 4 000 ₽',
                           },
                           {
                             'title': 'Ремонт платы управления',
                             'issues': [
                               'Не включается',
                               'Сбои в работе',
-                              'Ошибки на дисплее'
+                              'Ошибки на дисплее',
                             ],
-                            'price': 'от 6 000 ₽'
+                            'price': 'от 6 000 ₽',
                           },
                           {
                             'title': 'Устранение утечки фреона',
                             'issues': [
                               'Плохо охлаждает',
                               'Обмерзание',
-                              'Пониженное давление'
+                              'Пониженное давление',
                             ],
-                            'price': 'от 3 000 ₽'
+                            'price': 'от 3 000 ₽',
                           },
                           {
                             'title': 'Чистка дренажа',
-                            'issues': [
-                              'Течет вода',
-                              'Запах',
-                              'Забит дренаж'
-                            ],
-                            'price': 'от 2 000 ₽'
+                            'issues': ['Течет вода', 'Запах', 'Забит дренаж'],
+                            'price': 'от 2 000 ₽',
                           },
                           {
                             'title': 'Настройка и диагностика',
                             'issues': [
                               'Неправильная работа',
                               'Настройка режимов',
-                              'Полная диагностика'
+                              'Полная диагностика',
                             ],
-                            'price': 'от 1 500 ₽'
+                            'price': 'от 1 500 ₽',
                           },
                         ];
                         final repair = repairs[index];
@@ -1628,7 +1721,8 @@ class ServicesPage extends StatelessWidget {
                   _AdditionalServiceCard(
                     icon: Icons.security,
                     title: 'Гарантийное обслуживание',
-                    description: 'Обслуживание оборудования в гарантийный период',
+                    description:
+                        'Обслуживание оборудования в гарантийный период',
                     price: 'от 2 000 ₽',
                     color: Colors.red,
                   ),
@@ -1703,26 +1797,24 @@ class _ServiceDetailItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
           Text(
             description,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.onSurface.withOpacity(0.6),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+            ),
           ),
           const SizedBox(height: 12),
           Text(
             price,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
@@ -1759,18 +1851,18 @@ class _ServiceFeatureItem extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   description,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(
-                          context,
-                        ).colorScheme.onSurface.withOpacity(0.6),
-                      ),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withOpacity(0.6),
+                  ),
                 ),
               ],
             ),
@@ -1809,34 +1901,36 @@ class _RepairServiceCard extends StatelessWidget {
         children: [
           Text(
             repair['title'] as String,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: (repair['issues'] as List)
-                .map<Widget>((issue) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2),
-                      child: Text(
-                        '• $issue',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.onSurface.withOpacity(0.7),
-                            ),
+                .map<Widget>(
+                  (issue) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 2),
+                    child: Text(
+                      '• $issue',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.onSurface.withOpacity(0.7),
                       ),
-                    ))
+                    ),
+                  ),
+                )
                 .toList(),
           ),
           const Spacer(),
           Text(
             repair['price'] as String,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
@@ -1891,26 +1985,24 @@ class _AdditionalServiceCard extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             title,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
           Text(
             description,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.onSurface.withOpacity(0.6),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+            ),
           ),
           const SizedBox(height: 16),
           Text(
             price,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: color,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
@@ -1943,10 +2035,10 @@ class ProcessPage extends StatelessWidget {
             Text(
               'Четкий алгоритм действий от заявки до сдачи объекта',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.onBackground.withOpacity(0.6),
-                  ),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onBackground.withOpacity(0.6),
+              ),
             ),
             const SizedBox(height: 40),
 
@@ -2033,32 +2125,38 @@ class ProcessPage extends StatelessWidget {
                     {
                       'icon': Icons.attach_money,
                       'title': 'Доступные цены',
-                      'description': 'Прозрачное ценообразование без скрытых платежей'
+                      'description':
+                          'Прозрачное ценообразование без скрытых платежей',
                     },
                     {
                       'icon': Icons.schedule,
                       'title': 'Соблюдение сроков',
-                      'description': 'Строгое соблюдение оговоренных сроков выполнения работ'
+                      'description':
+                          'Строгое соблюдение оговоренных сроков выполнения работ',
                     },
                     {
                       'icon': Icons.engineering,
                       'title': 'Опытные мастера',
-                      'description': 'Квалифицированные специалисты с опытом от 5 лет'
+                      'description':
+                          'Квалифицированные специалисты с опытом от 5 лет',
                     },
                     {
                       'icon': Icons.security,
                       'title': 'Гарантия 2 года',
-                      'description': 'Длительная гарантия на все виды работ и оборудование'
+                      'description':
+                          'Длительная гарантия на все виды работ и оборудование',
                     },
                     {
                       'icon': Icons.cleaning_services,
                       'title': 'Чистота после работ',
-                      'description': 'Убираем за собой и оставляем идеальную чистоту'
+                      'description':
+                          'Убираем за собой и оставляем идеальную чистоту',
                     },
                     {
                       'icon': Icons.support_agent,
                       'title': 'Круглосуточная поддержка',
-                      'description': 'Техническая поддержка 24/7 после завершения работ'
+                      'description':
+                          'Техническая поддержка 24/7 после завершения работ',
                     },
                   ];
                   final benefit = benefits[index];
@@ -2074,12 +2172,14 @@ class ProcessPage extends StatelessWidget {
                 child: Column(
                   children: [
                     _FAQItem(
-                      question: 'Сколько времени занимает установка кондиционера?',
+                      question:
+                          'Сколько времени занимает установка кондиционера?',
                       answer:
                           'Стандартный монтаж занимает 3-4 часа. Сложные работы (длинные трассы, дополнительные работы) могут занять до 8 часов.',
                     ),
                     _FAQItem(
-                      question: 'Нужно ли присутствие заказчика во время работ?',
+                      question:
+                          'Нужно ли присутствие заказчика во время работ?',
                       answer:
                           'Присутствие необходимо только при приемке работы и получении инструктажа. В остальное время вы можете заниматься своими делами.',
                     ),
@@ -2214,9 +2314,7 @@ class _ProcessStep extends StatelessWidget {
                         const SizedBox(width: 12),
                         Text(
                           'Шаг $number',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
+                          style: Theme.of(context).textTheme.titleLarge
                               ?.copyWith(
                                 color: color,
                                 fontWeight: FontWeight.bold,
@@ -2230,26 +2328,26 @@ class _ProcessStep extends StatelessWidget {
                     Text(
                       'Шаг $number: $title',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: color,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        color: color,
+                        fontWeight: FontWeight.bold,
+                      ),
                     )
                   else
                     Text(
                       title,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   const SizedBox(height: 12),
                   Text(
                     description,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurface.withOpacity(0.7),
-                          height: 1.6,
-                        ),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withOpacity(0.7),
+                      height: 1.6,
+                    ),
                   ),
                 ],
               ),
@@ -2296,18 +2394,16 @@ class _BenefitCard extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             benefit['title'] as String,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
           Text(
             benefit['description'] as String,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.onSurface.withOpacity(0.6),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+            ),
           ),
         ],
       ),
@@ -2342,18 +2438,16 @@ class _FAQItem extends StatelessWidget {
         children: [
           Text(
             question,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
           Text(
             answer,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.onSurface.withOpacity(0.7),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            ),
           ),
         ],
       ),
@@ -2401,10 +2495,10 @@ class _GalleryPageState extends State<GalleryPage> {
             Text(
               'Реализованные проекты и примеры наших работ в Нижнем Новгороде',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.onBackground.withOpacity(0.6),
-                  ),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onBackground.withOpacity(0.6),
+              ),
             ),
             const SizedBox(height: 40),
 
@@ -2426,12 +2520,10 @@ class _GalleryPageState extends State<GalleryPage> {
                   backgroundColor: Theme.of(context).colorScheme.surface,
                   selectedColor: Theme.of(context).colorScheme.primary,
                   labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: _selectedCategory == index
-                            ? Colors.white
-                            : Theme.of(
-                                context,
-                              ).colorScheme.onSurface,
-                      ),
+                    color: _selectedCategory == index
+                        ? Colors.white
+                        : Theme.of(context).colorScheme.onSurface,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -2449,17 +2541,15 @@ class _GalleryPageState extends State<GalleryPage> {
                 crossAxisCount: isDesktop
                     ? 3
                     : isTablet
-                        ? 2
-                        : 1,
+                    ? 2
+                    : 1,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
                 childAspectRatio: 0.8,
               ),
               itemCount: sampleImages.length,
-              itemBuilder: (context, index) => _GalleryItem(
-                imageUrl: sampleImages[index],
-                index: index,
-              ),
+              itemBuilder: (context, index) =>
+                  _GalleryItem(imageUrl: sampleImages[index], index: index),
             ),
 
             const SizedBox(height: 40),
@@ -2482,8 +2572,8 @@ class _GalleryPageState extends State<GalleryPage> {
                       crossAxisCount: isDesktop
                           ? 4
                           : isTablet
-                              ? 2
-                              : 2,
+                          ? 2
+                          : 2,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
                       childAspectRatio: 1.5,
@@ -2630,18 +2720,18 @@ class _GalleryItem extends StatelessWidget {
                     child: Text(
                       'Проект ${index + 1}',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     descriptions[index],
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
@@ -2679,19 +2769,17 @@ class _StatCard extends StatelessWidget {
           Text(
             stat['number'] as String,
             style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Text(
             stat['label'] as String,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.onSurface.withOpacity(0.7),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+            ),
             textAlign: TextAlign.center,
           ),
         ],
@@ -2740,18 +2828,15 @@ class _ContactsPageState extends State<ContactsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Контакты',
-              style: Theme.of(context).textTheme.displayLarge,
-            ),
+            Text('Контакты', style: Theme.of(context).textTheme.displayLarge),
             const SizedBox(height: 8),
             Text(
               'Свяжитесь с нами для консультации или оформления заказа',
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.onBackground.withOpacity(0.6),
-                  ),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onBackground.withOpacity(0.6),
+              ),
             ),
             const SizedBox(height: 40),
 
@@ -2759,10 +2844,7 @@ class _ContactsPageState extends State<ContactsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (isDesktop) ...[
-                  Expanded(
-                    flex: 2,
-                    child: _ContactInfoSection(),
-                  ),
+                  Expanded(flex: 2, child: _ContactInfoSection()),
                   const SizedBox(width: 60),
                   Expanded(
                     flex: 3,
@@ -2803,17 +2885,14 @@ class _ContactsPageState extends State<ContactsPage> {
                             Icon(
                               Icons.map,
                               size: 64,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurface
-                                  .withOpacity(0.3),
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurface.withOpacity(0.3),
                             ),
                             const SizedBox(height: 16),
                             Text(
                               'Карта Нижнего Новгорода',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
+                              style: Theme.of(context).textTheme.titleLarge
                                   ?.copyWith(
                                     color: Theme.of(
                                       context,
@@ -2831,8 +2910,7 @@ class _ContactsPageState extends State<ContactsPage> {
                           padding: const EdgeInsets.all(16),
                           child: Row(
                             children: [
-                              const Icon(Icons.location_on,
-                                  color: Colors.red),
+                              const Icon(Icons.location_on, color: Colors.red),
                               const SizedBox(width: 12),
                               Expanded(
                                 child: Column(
@@ -2854,9 +2932,10 @@ class _ContactsPageState extends State<ContactsPage> {
                                           .textTheme
                                           .bodyMedium
                                           ?.copyWith(
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.onSurface.withOpacity(0.6),
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onSurface
+                                                .withOpacity(0.6),
                                           ),
                                     ),
                                   ],
@@ -2926,9 +3005,9 @@ class _ContactInfoSection extends StatelessWidget {
               Text(
                 'Срочный вызов',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
@@ -2953,9 +3032,9 @@ class _ContactInfoSection extends StatelessWidget {
             children: [
               Text(
                 'Социальные сети',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 16),
               Row(
@@ -3040,17 +3119,17 @@ class _ContactInfoItem extends StatelessWidget {
                       Text(
                         title,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.onSurface.withOpacity(0.6),
-                            ),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withOpacity(0.6),
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         value,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.w500,
-                            ),
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ],
                   ),
@@ -3138,10 +3217,8 @@ class _ContactFormSectionState extends State<_ContactFormSection> {
           Text(
             'Заполните форму и мы свяжемся с вами в течение 15 минут',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.onSurface.withOpacity(0.6),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+            ),
           ),
           const SizedBox(height: 24),
 
@@ -3193,19 +3270,20 @@ class _ContactFormSectionState extends State<_ContactFormSection> {
                     labelText: 'Услуга',
                     prefixIcon: Icon(Icons.construction),
                   ),
-                  items: [
-                    'Установка кондиционера',
-                    'Обслуживание',
-                    'Ремонт',
-                    'Заправка фреоном',
-                    'Демонтаж',
-                    'Консультация',
-                  ].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
+                  items:
+                      [
+                        'Установка кондиционера',
+                        'Обслуживание',
+                        'Ремонт',
+                        'Заправка фреоном',
+                        'Демонтаж',
+                        'Консультация',
+                      ].map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
                   onChanged: (String? newValue) {
                     setState(() {
                       _selectedService = newValue!;
@@ -3229,8 +3307,12 @@ class _ContactFormSectionState extends State<_ContactFormSection> {
                       // Обработка отправки формы
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('Заявка отправлена! Мы свяжемся с вами в ближайшее время.'),
-                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          content: Text(
+                            'Заявка отправлена! Мы свяжемся с вами в ближайшее время.',
+                          ),
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.primary,
                         ),
                       );
                     }
