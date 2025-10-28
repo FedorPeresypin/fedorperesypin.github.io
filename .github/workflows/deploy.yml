@@ -1,9 +1,7 @@
-name: Flutter Build
+name: Flutter Build Latest
 
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
     branches: [ main, master ]
 
 jobs:
@@ -13,30 +11,24 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup Java
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'zulu'
-        java-version: '17'
+    - name: Install Flutter (latest stable)
+      run: |
+        git clone https://github.com/flutter/flutter.git --depth 1 -b stable /opt/flutter
+        echo "/opt/flutter/bin" >> $GITHUB_PATH
         
     - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.22.0'
-        
-    - name: Show versions
       run: |
+        flutter doctor
         flutter --version
-        dart --version
         
-    - name: Get packages
+    - name: Get dependencies
       run: flutter pub get
       
-    - name: Build Web
-      run: flutter build web --release --web-renderer html --no-tree-shake-icons
+    - name: Build web
+      run: flutter build web --release
       
-    - name: Upload artifact
+    - name: Upload build
       uses: actions/upload-artifact@v4
       with:
-        name: web-build
+        name: web-app
         path: build/web
