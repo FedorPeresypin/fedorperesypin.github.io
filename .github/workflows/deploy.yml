@@ -77,5 +77,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local_path: build/web/
-          remote_path: /public_html/app/
+          remote_path: /var/www/www-root/data/www/vetrecnn.ru/
           port: 22
