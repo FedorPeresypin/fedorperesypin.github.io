@@ -76,6 +76,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local_path: build/web/
+          local_path: build/web/           # содержимое этой папки
           remote_path: /var/www/www-root/data/www/vetrecnn.ru/
           port: 22
+          recursive: true
+          remove_prefix: build/web
