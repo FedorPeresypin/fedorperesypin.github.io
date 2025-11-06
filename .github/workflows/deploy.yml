@@ -70,11 +70,12 @@ jobs:
           name: web-build
           path: build/web
 
-      - name: Deploy to FTP hosting
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy to SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: build/web/
-          server-dir: /public_html/
+          local_path: build/web/
+          remote_path: /public_html/app/
+          port: 22
