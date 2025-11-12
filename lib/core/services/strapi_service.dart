@@ -62,8 +62,8 @@ class StrapiService {
           final dataList = jsonData['data'] as List;
           if (dataList.isNotEmpty) {
             final itemData = dataList[0] as Map<String, dynamic>;
-            //final attributesJson = itemData['attributes'] as Map<String, dynamic>;
-            final attributes = _parseLocalizationAttributes(itemData);
+            final attributesJson = itemData['attributes'] as Map<String, dynamic>;
+            final attributes = _parseLocalizationAttributes(attributesJson);
             final item = StrapiLocalization(
               id: itemData['id'] as int,
               attributes: attributes,
@@ -79,7 +79,7 @@ class StrapiService {
           // Если пришел один объект
           final itemData = jsonData['data'] as Map<String, dynamic>;
           final attributesJson = itemData['attributes'] as Map<String, dynamic>;
-          final attributes = _parseLocalizationAttributes(itemData);
+          final attributes = _parseLocalizationAttributes(attributesJson);
           final item = StrapiLocalization(
             id: itemData['id'] as int,
             attributes: attributes,
