@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:aircool/core/models/strapi/strapi_content_item.dart';
 import 'package:aircool/core/models/strapi/strapi_response.dart';
 
-part 'localization_model.g.dart'; // Раскомментируйте после генерации кода
+// part 'localization_model.g.dart'; // Раскомментируйте после генерации кода
 
 /// Модель локализации из Strapi
 @JsonSerializable()
@@ -57,6 +57,42 @@ class LocalizationAttributes {
   final String serviceDemountDesc;
   final String serviceConsultation;
   final String serviceConsultationDesc;
+  final String serviceInstallHeading;
+  final String serviceInstallText;
+  final String serviceDetailStandardTitle;
+  final String serviceDetailStandardDescription;
+  final String serviceDetailAdvancedTitle;
+  final String serviceDetailAdvancedDescription;
+  final String serviceDetailMultiTitle;
+  final String serviceDetailMultiDescription;
+  final String serviceDetailPremiumTitle;
+  final String serviceDetailPremiumDescription;
+  final String serviceDetailStandardPrice;
+  final String serviceDetailAdvancedPrice;
+  final String serviceDetailMultiPrice;
+  final String serviceDetailPremiumPrice;
+  final String serviceDetailCleaningBasicPrice;
+  final String serviceDetailCleaningDeepPrice;
+  final String serviceDetailDiagnosticsPrice;
+  final String serviceDetailCompressorPrice;
+  final String serviceDetailBoardPrice;
+  final String serviceDetailFreonPrice;
+  final String serviceMaintenanceSubtitleDetailed;
+  final String serviceMaintenanceHeading;
+  final String serviceMaintenanceText;
+  final String serviceDetailCleaningBasicTitle;
+  final String serviceDetailCleaningBasicDescription;
+  final String serviceDetailCleaningDeepTitle;
+  final String serviceDetailCleaningDeepDescription;
+  final String serviceDetailDiagnosticsTitle;
+  final String serviceDetailDiagnosticsDescription;
+  final String serviceRepairSubtitleDetailed;
+  final String serviceDetailCompressorTitle;
+  final String serviceDetailCompressorDescription;
+  final String serviceDetailBoardTitle;
+  final String serviceDetailBoardDescription;
+  final String serviceDetailFreonTitle;
+  final String serviceDetailFreonDescription;
 
   // Прайс-лист
   final String priceListTitle;
@@ -78,6 +114,21 @@ class LocalizationAttributes {
   final String galleryMaintenance;
   final String galleryRepair;
   final String galleryStatsTitle;
+  final String galleryStatsSectionTitle;
+  final String galleryStatInstallations;
+  final String galleryStatInstallationsSubtitle;
+  final String galleryStatServiced;
+  final String galleryStatServicedSubtitle;
+  final String galleryStatSupport;
+  final String galleryStatSupportSubtitle;
+  final String galleryStatExperience;
+  final String galleryStatExperienceSubtitle;
+  final String galleryDescription1;
+  final String galleryDescription2;
+  final String galleryDescription3;
+  final String galleryDescription4;
+  final String galleryDescription5;
+  final String galleryDescription6;
 
   // Процесс
   final String processTitle;
@@ -93,6 +144,23 @@ class LocalizationAttributes {
   final String processStep4Desc;
   final String processStep5Title;
   final String processStep5Desc;
+  final String processBenefitsTitle;
+  final String processBenefitsSubtitle;
+  final String processBenefit1Title;
+  final String processBenefit1Description;
+  final String processBenefit2Title;
+  final String processBenefit2Description;
+  final String processBenefit3Title;
+  final String processBenefit3Description;
+  final String processBenefit4Title;
+  final String processBenefit4Description;
+  final String processFAQTitle;
+  final String processFAQQuestion1;
+  final String processFAQAnswer1;
+  final String processFAQQuestion2;
+  final String processFAQAnswer2;
+  final String processFAQQuestion3;
+  final String processFAQAnswer3;
 
   // Контакты
   final String contactsTitle;
@@ -110,6 +178,21 @@ class LocalizationAttributes {
   final String contactsFormSuccess;
   final String contactsFormNameError;
   final String contactsFormPhoneError;
+  final String contactsInfoTitle;
+  final String contactsAddressTitle;
+  final String contactsAddressValue;
+  final String contactsPhoneTitle;
+  final String contactsPhoneValue;
+  final String contactsEmailTitle;
+  final String contactsEmailValue;
+  final String contactsScheduleTitle;
+  final String contactsScheduleValue;
+  final String contactsSocialTitle;
+  final String contactsSocialTelegram;
+  final String contactsSocialWhatsApp;
+  final String contactsSocialVkontakte;
+  final String contactsMapPlaceholderTitle;
+  final String contactsMapPlaceholderSubtitle;
 
   // CTA
   final String ctaTitle;
@@ -161,6 +244,42 @@ class LocalizationAttributes {
     required this.serviceDemountDesc,
     required this.serviceConsultation,
     required this.serviceConsultationDesc,
+    required this.serviceInstallHeading,
+    required this.serviceInstallText,
+    required this.serviceDetailStandardTitle,
+    required this.serviceDetailStandardDescription,
+    required this.serviceDetailAdvancedTitle,
+    required this.serviceDetailAdvancedDescription,
+    required this.serviceDetailMultiTitle,
+    required this.serviceDetailMultiDescription,
+    required this.serviceDetailPremiumTitle,
+    required this.serviceDetailPremiumDescription,
+    required this.serviceDetailStandardPrice,
+    required this.serviceDetailAdvancedPrice,
+    required this.serviceDetailMultiPrice,
+    required this.serviceDetailPremiumPrice,
+    required this.serviceDetailCleaningBasicPrice,
+    required this.serviceDetailCleaningDeepPrice,
+    required this.serviceDetailDiagnosticsPrice,
+    required this.serviceDetailCompressorPrice,
+    required this.serviceDetailBoardPrice,
+    required this.serviceDetailFreonPrice,
+    required this.serviceMaintenanceSubtitleDetailed,
+    required this.serviceMaintenanceHeading,
+    required this.serviceMaintenanceText,
+    required this.serviceDetailCleaningBasicTitle,
+    required this.serviceDetailCleaningBasicDescription,
+    required this.serviceDetailCleaningDeepTitle,
+    required this.serviceDetailCleaningDeepDescription,
+    required this.serviceDetailDiagnosticsTitle,
+    required this.serviceDetailDiagnosticsDescription,
+    required this.serviceRepairSubtitleDetailed,
+    required this.serviceDetailCompressorTitle,
+    required this.serviceDetailCompressorDescription,
+    required this.serviceDetailBoardTitle,
+    required this.serviceDetailBoardDescription,
+    required this.serviceDetailFreonTitle,
+    required this.serviceDetailFreonDescription,
     required this.priceListTitle,
     required this.priceListSubtitle,
     required this.priceButton,
@@ -178,6 +297,21 @@ class LocalizationAttributes {
     required this.galleryMaintenance,
     required this.galleryRepair,
     required this.galleryStatsTitle,
+    required this.galleryStatsSectionTitle,
+    required this.galleryStatInstallations,
+    required this.galleryStatInstallationsSubtitle,
+    required this.galleryStatServiced,
+    required this.galleryStatServicedSubtitle,
+    required this.galleryStatSupport,
+    required this.galleryStatSupportSubtitle,
+    required this.galleryStatExperience,
+    required this.galleryStatExperienceSubtitle,
+    required this.galleryDescription1,
+    required this.galleryDescription2,
+    required this.galleryDescription3,
+    required this.galleryDescription4,
+    required this.galleryDescription5,
+    required this.galleryDescription6,
     required this.processTitle,
     required this.processSubtitle,
     required this.processStepsTitle,
@@ -191,6 +325,23 @@ class LocalizationAttributes {
     required this.processStep4Desc,
     required this.processStep5Title,
     required this.processStep5Desc,
+    required this.processBenefitsTitle,
+    required this.processBenefitsSubtitle,
+    required this.processBenefit1Title,
+    required this.processBenefit1Description,
+    required this.processBenefit2Title,
+    required this.processBenefit2Description,
+    required this.processBenefit3Title,
+    required this.processBenefit3Description,
+    required this.processBenefit4Title,
+    required this.processBenefit4Description,
+    required this.processFAQTitle,
+    required this.processFAQQuestion1,
+    required this.processFAQAnswer1,
+    required this.processFAQQuestion2,
+    required this.processFAQAnswer2,
+    required this.processFAQQuestion3,
+    required this.processFAQAnswer3,
     required this.contactsTitle,
     required this.contactsSubtitle,
     required this.contactsMapTitle,
@@ -206,6 +357,21 @@ class LocalizationAttributes {
     required this.contactsFormSuccess,
     required this.contactsFormNameError,
     required this.contactsFormPhoneError,
+    required this.contactsInfoTitle,
+    required this.contactsAddressTitle,
+    required this.contactsAddressValue,
+    required this.contactsPhoneTitle,
+    required this.contactsPhoneValue,
+    required this.contactsEmailTitle,
+    required this.contactsEmailValue,
+    required this.contactsScheduleTitle,
+    required this.contactsScheduleValue,
+    required this.contactsSocialTitle,
+    required this.contactsSocialTelegram,
+    required this.contactsSocialWhatsApp,
+    required this.contactsSocialVkontakte,
+    required this.contactsMapPlaceholderTitle,
+    required this.contactsMapPlaceholderSubtitle,
     required this.ctaTitle,
     required this.ctaDescription,
     required this.ctaButtonOrder,
@@ -214,9 +380,9 @@ class LocalizationAttributes {
   });
 
   // Временный метод до генерации кода
-  factory LocalizationAttributes.fromJson(Map<String, dynamic> json) =>
-      _$LocalizationAttributesFromJson(json);
-  Map<String, dynamic> toJson() => _$LocalizationAttributesToJson(this);
+  // factory LocalizationAttributes.fromJson(Map<String, dynamic> json) =>
+  //     _$LocalizationAttributesFromJson(json);
+  // Map<String, dynamic> toJson() => _$LocalizationAttributesToJson(this);
 }
 
 /// Тип для локализации из Strapi

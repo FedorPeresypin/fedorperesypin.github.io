@@ -94,12 +94,12 @@ class _ContactsPageState extends State<ContactsPage> {
                             color: Theme.of(context).colorScheme.primary, size: 48),
                         const SizedBox(height: 16),
                         Text(
-                          'Интерактивная карта появится на этом месте',
+                          AppLocalizations.contactsMapPlaceholderTitle,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Подключите виджет Яндекс.Карт или Google Maps',
+                          AppLocalizations.contactsMapPlaceholderSubtitle,
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                 color: Theme.of(context)
                                     .colorScheme
@@ -126,44 +126,44 @@ class _ContactsPageState extends State<ContactsPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Контактная информация',
+            AppLocalizations.contactsInfoTitle,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
           ),
           const SizedBox(height: 16),
-          const _ContactInfoItem(
+          _ContactInfoItem(
             icon: Icons.place_outlined,
-            title: 'Адрес',
-            subtitle: 'Нижний Новгород, ул. Ленина, 12',
+            title: AppLocalizations.contactsAddressTitle,
+            subtitle: AppLocalizations.contactsAddressValue,
           ),
-          const _ContactInfoItem(
+          _ContactInfoItem(
             icon: Icons.phone_outlined,
-            title: 'Телефон',
-            subtitle: '+7 (831) 123-45-67',
+            title: AppLocalizations.contactsPhoneTitle,
+            subtitle: AppLocalizations.contactsPhoneValue,
           ),
-          const _ContactInfoItem(
+          _ContactInfoItem(
             icon: Icons.mail_outline,
-            title: 'Email',
-            subtitle: 'info@skidanov-service.ru',
+            title: AppLocalizations.contactsEmailTitle,
+            subtitle: AppLocalizations.contactsEmailValue,
           ),
           const Divider(height: 32),
           Text(
-            'График работы',
+            AppLocalizations.contactsScheduleTitle,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
           ),
           const SizedBox(height: 8),
           Text(
-            'Пн-Пт: 9:00 – 20:00\nСб: 10:00 – 18:00\nВс: по записи',
+            AppLocalizations.contactsScheduleValue,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
                 ),
           ),
           const Divider(height: 32),
           Text(
-            'Мы в социальных сетях',
+            AppLocalizations.contactsSocialTitle,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
@@ -171,10 +171,10 @@ class _ContactsPageState extends State<ContactsPage> {
           const SizedBox(height: 12),
           Wrap(
             spacing: 12,
-            children: const [
-              _SocialButton(icon: Icons.telegram, label: 'Telegram'),
-              _SocialButton(icon: Icons.chat_bubble_outline, label: 'WhatsApp'),
-              _SocialButton(icon: Icons.language, label: 'ВКонтакте'),
+            children: [
+              _SocialButton(icon: Icons.telegram, label: AppLocalizations.contactsSocialTelegram),
+              _SocialButton(icon: Icons.chat_bubble_outline, label: AppLocalizations.contactsSocialWhatsApp),
+              _SocialButton(icon: Icons.language, label: AppLocalizations.contactsSocialVkontakte),
             ],
           ),
         ],

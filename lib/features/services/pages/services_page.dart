@@ -27,7 +27,7 @@ class ServicesPage extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Полный спектр услуг по установке и обслуживанию климатической техники',
+              AppLocalizations.servicesSubtitle,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
                   ),
@@ -71,14 +71,14 @@ class ServicesPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Полный комплекс работ по монтажу',
+                                AppLocalizations.serviceInstallHeading,
                                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
                                       color: Theme.of(context).colorScheme.primary,
                                     ),
                               ),
                               const SizedBox(height: 12),
                               Text(
-                                'Мы осуществляем профессиональный монтаж кондиционеров всех типов: настенные сплит-системы, кассетные, канальные, напольно-потолочные и мульти-сплит системы. Каждый монтаж включает полный комплекс работ с гарантией качества.',
+                                AppLocalizations.serviceInstallText,
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ],
@@ -90,26 +90,26 @@ class ServicesPage extends StatelessWidget {
                     Wrap(
                       spacing: 12,
                       runSpacing: 12,
-                      children: const [
+                      children: [
                         _ServiceDetailItem(
-                          title: 'Стандартный монтаж',
-                          description: 'Установка внутреннего и внешнего блоков, подключение коммуникаций',
-                          price: 'от 6 000 ₽',
+                          title: AppLocalizations.serviceDetailStandardTitle,
+                          description: AppLocalizations.serviceDetailStandardDescription,
+                          price: AppLocalizations.serviceDetailStandardPrice,
                         ),
                         _ServiceDetailItem(
-                          title: 'Сложный монтаж',
-                          description: 'Дополнительные работы: штробление стен, протяжка трасс более 5м',
-                          price: 'от 10 000 ₽',
+                          title: AppLocalizations.serviceDetailAdvancedTitle,
+                          description: AppLocalizations.serviceDetailAdvancedDescription,
+                          price: AppLocalizations.serviceDetailAdvancedPrice,
                         ),
                         _ServiceDetailItem(
-                          title: 'Мульти-сплит системы',
-                          description: 'Установка систем с несколькими внутренними блоками',
-                          price: 'от 15 000 ₽',
+                          title: AppLocalizations.serviceDetailMultiTitle,
+                          description: AppLocalizations.serviceDetailMultiDescription,
+                          price: AppLocalizations.serviceDetailMultiPrice,
                         ),
                         _ServiceDetailItem(
-                          title: 'Премиум монтаж',
-                          description: 'Полный комплекс работ с использованием премиальных материалов',
-                          price: 'от 20 000 ₽',
+                          title: AppLocalizations.serviceDetailPremiumTitle,
+                          description: AppLocalizations.serviceDetailPremiumDescription,
+                          price: AppLocalizations.serviceDetailPremiumPrice,
                         ),
                       ],
                     ),
@@ -120,8 +120,8 @@ class ServicesPage extends StatelessWidget {
 
             // Обслуживание и чистка
             Section(
-              title: 'Обслуживание и чистка',
-              subtitle: 'Регулярное обслуживание для долговечной работы',
+              title: AppLocalizations.serviceMaintenance,
+              subtitle: AppLocalizations.serviceMaintenanceSubtitleDetailed,
               child: ContentCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,14 +155,14 @@ class ServicesPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Комплексное сервисное обслуживание',
+                                AppLocalizations.serviceMaintenanceHeading,
                                 style: Theme.of(context).textTheme.displaySmall?.copyWith(
                                       color: Theme.of(context).colorScheme.secondary,
                                     ),
                               ),
                               const SizedBox(height: 12),
                               Text(
-                                'Регулярная чистка и профилактика предотвращает поломки, снижает расход электроэнергии и повышает эффективность системы. Мы используем безопасные моющие средства и профессиональное оборудование.',
+                                AppLocalizations.serviceMaintenanceText,
                                 style: Theme.of(context).textTheme.bodyLarge,
                               ),
                             ],
@@ -174,21 +174,21 @@ class ServicesPage extends StatelessWidget {
                     Wrap(
                       spacing: 12,
                       runSpacing: 12,
-                      children: const [
+                      children: [
                         _ServiceDetailItem(
-                          title: 'Базовая чистка',
-                          description: 'Очистка фильтров, дезинфекция испарителя',
-                          price: 'от 1 500 ₽',
+                          title: AppLocalizations.serviceDetailCleaningBasicTitle,
+                          description: AppLocalizations.serviceDetailCleaningBasicDescription,
+                          price: AppLocalizations.serviceDetailCleaningBasicPrice,
                         ),
                         _ServiceDetailItem(
-                          title: 'Глубокая чистка',
-                          description: 'Разборка внутреннего блока, химическая чистка теплообменника',
-                          price: 'от 3 000 ₽',
+                          title: AppLocalizations.serviceDetailCleaningDeepTitle,
+                          description: AppLocalizations.serviceDetailCleaningDeepDescription,
+                          price: AppLocalizations.serviceDetailCleaningDeepPrice,
                         ),
                         _ServiceDetailItem(
-                          title: 'Диагностика',
-                          description: 'Проверка давления хладагента, электроники и дренажа',
-                          price: 'от 1 000 ₽',
+                          title: AppLocalizations.serviceDetailDiagnosticsTitle,
+                          description: AppLocalizations.serviceDetailDiagnosticsDescription,
+                          price: AppLocalizations.serviceDetailDiagnosticsPrice,
                         ),
                       ],
                     ),
@@ -199,27 +199,27 @@ class ServicesPage extends StatelessWidget {
 
             // Ремонт
             Section(
-              title: 'Ремонт',
-              subtitle: 'Быстрое и качественное устранение неисправностей',
+              title: AppLocalizations.serviceRepair,
+              subtitle: AppLocalizations.serviceRepairSubtitleDetailed,
               child: ContentCard(
                 child: Wrap(
                   spacing: 12,
                   runSpacing: 12,
-                  children: const [
+                  children: [
                     _ServiceDetailItem(
-                      title: 'Замена компрессора',
-                      description: 'Подбор и замена компрессора, проверка герметичности',
-                      price: 'от 8 000 ₽',
+                      title: AppLocalizations.serviceDetailCompressorTitle,
+                      description: AppLocalizations.serviceDetailCompressorDescription,
+                      price: AppLocalizations.serviceDetailCompressorPrice,
                     ),
                     _ServiceDetailItem(
-                      title: 'Ремонт платы управления',
-                      description: 'Диагностика и ремонт электроники, прошивка',
-                      price: 'от 6 000 ₽',
+                      title: AppLocalizations.serviceDetailBoardTitle,
+                      description: AppLocalizations.serviceDetailBoardDescription,
+                      price: AppLocalizations.serviceDetailBoardPrice,
                     ),
                     _ServiceDetailItem(
-                      title: 'Заправка фреоном',
-                      description: 'Поиск утечек, вакуумирование, дозаправка',
-                      price: 'от 2 500 ₽',
+                      title: AppLocalizations.serviceDetailFreonTitle,
+                      description: AppLocalizations.serviceDetailFreonDescription,
+                      price: AppLocalizations.serviceDetailFreonPrice,
                     ),
                   ],
                 ),

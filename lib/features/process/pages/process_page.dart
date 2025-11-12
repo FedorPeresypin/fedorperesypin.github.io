@@ -15,62 +15,62 @@ class ProcessPage extends StatelessWidget {
     final steps = [
       (
         icon: Icons.phone_in_talk,
-        title: 'Заявка',
-        description: 'Оставьте заявку на сайте или по телефону. Менеджер свяжется в течение 15 минут для уточнения деталей.'
+        title: AppLocalizations.processStep1Title,
+        description: AppLocalizations.processStep1Desc,
       ),
       (
         icon: Icons.engineering,
-        title: 'Выезд мастера',
-        description: 'Бесплатный выезд специалиста на объект для оценки условий монтажа и замеров.'
+        title: AppLocalizations.processStep2Title,
+        description: AppLocalizations.processStep2Desc,
       ),
       (
         icon: Icons.calculate,
-        title: 'Расчет стоимости',
-        description: 'Подготавливаем подробную смету с вариантами оборудования и сроками выполнения работ.'
+        title: AppLocalizations.processStep3Title,
+        description: AppLocalizations.processStep3Desc,
       ),
       (
         icon: Icons.construction,
-        title: 'Монтаж',
-        description: 'Профессиональный монтаж, подключение, тестирование и инструктаж по эксплуатации.'
+        title: AppLocalizations.processStep4Title,
+        description: AppLocalizations.processStep4Desc,
       ),
       (
         icon: Icons.verified,
-        title: 'Сдача объекта',
-        description: 'Контроль качества, финальная проверка и гарантийная документация с рекомендациями по обслуживанию.'
+        title: AppLocalizations.processStep5Title,
+        description: AppLocalizations.processStep5Desc,
       ),
     ];
 
     final benefits = [
       (
-        title: 'Гарантия на работы',
-        description: 'Гарантия 24 месяца на монтаж и сервисные работы. Работаем по договору.'
+        title: AppLocalizations.processBenefit1Title,
+        description: AppLocalizations.processBenefit1Description,
       ),
       (
-        title: 'Прозрачная смета',
-        description: 'Подробный расчет без скрытых платежей. Стоимость фиксируется до начала работ.'
+        title: AppLocalizations.processBenefit2Title,
+        description: AppLocalizations.processBenefit2Description,
       ),
       (
-        title: 'Собственные бригады',
-        description: 'Опытные специалисты с профильным образованием и допусками.'
+        title: AppLocalizations.processBenefit3Title,
+        description: AppLocalizations.processBenefit3Description,
       ),
       (
-        title: 'Качественные материалы',
-        description: 'Используем проверенные бренды оборудования и комплектующих.'
+        title: AppLocalizations.processBenefit4Title,
+        description: AppLocalizations.processBenefit4Description,
       ),
     ];
 
     final faqs = [
       (
-        question: 'Сколько занимает монтаж кондиционера?',
-        answer: 'Стандартный монтаж сплит-системы занимает 3-4 часа. Сложные проекты с трассами могут потребовать до 1 рабочего дня.'
+        question: AppLocalizations.processFAQQuestion1,
+        answer: AppLocalizations.processFAQAnswer1,
       ),
       (
-        question: 'Когда проводить обслуживание кондиционера?',
-        answer: 'Рекомендуем проводить сервисное обслуживание два раза в год: перед летним сезоном и после его окончания.'
+        question: AppLocalizations.processFAQQuestion2,
+        answer: AppLocalizations.processFAQAnswer2,
       ),
       (
-        question: 'Какая гарантия предоставляется?',
-        answer: 'На монтажные работы — 24 месяца. На оборудование распространяется заводская гарантия производителя.'
+        question: AppLocalizations.processFAQQuestion3,
+        answer: AppLocalizations.processFAQAnswer3,
       ),
     ];
 
@@ -111,8 +111,8 @@ class ProcessPage extends StatelessWidget {
               ),
             ),
             Section(
-              title: 'Преимущества сотрудничества',
-              subtitle: 'Мы сопровождаем проект на каждом этапе',
+              title: AppLocalizations.processBenefitsTitle,
+              subtitle: AppLocalizations.processBenefitsSubtitle,
               child: Wrap(
                 spacing: 16,
                 runSpacing: 16,
@@ -126,7 +126,7 @@ class ProcessPage extends StatelessWidget {
               ),
             ),
             Section(
-              title: 'Частые вопросы',
+              title: AppLocalizations.processFAQTitle,
               child: Column(
                 children: [
                   for (final faq in faqs)

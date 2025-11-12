@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:aircool/config/app_config.dart';
 import 'package:aircool/features/shared/widgets/section.dart';
 import 'package:aircool/features/shared/widgets/content_card.dart';
+import 'package:aircool/l10n/app_localizations.dart';
 
 /// Галерея выполненных работ
 class GalleryPage extends StatefulWidget {
@@ -12,13 +13,6 @@ class GalleryPage extends StatefulWidget {
 }
 
 class _GalleryPageState extends State<GalleryPage> {
-  final List<String> _categories = const [
-    'Все работы',
-    'Установка',
-    'Обслуживание',
-    'Ремонт',
-  ];
-
   int _selectedCategory = 0;
 
   @override
@@ -26,14 +20,14 @@ class _GalleryPageState extends State<GalleryPage> {
     final isDesktop = MediaQuery.of(context).size.width >= AppConfig.desktopBreakpoint;
     final isTablet = MediaQuery.of(context).size.width >= AppConfig.tabletBreakpoint;
 
-    final descriptions = const [
-      'Установка сплит-системы в квартире',
-      'Монтаж кондиционера в офисе',
-      'Обслуживание торгового центра',
-      'Ремонт промышленного кондиционера',
-      'Монтаж мульти-сплит системы',
-      'Профилактика системы кондиционирования',
+    final categories = [
+      AppLocalizations.galleryAll,
+      AppLocalizations.galleryInstallation,
+      AppLocalizations.galleryMaintenance,
+      AppLocalizations.galleryRepair,
     ];
+
+    final descriptions = AppLocalizations.galleryDescriptions;
 
     return SingleChildScrollView(
       child: Padding(
@@ -45,12 +39,12 @@ class _GalleryPageState extends State<GalleryPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Галерея работ',
+              AppLocalizations.galleryTitle,
               style: Theme.of(context).textTheme.displayLarge,
             ),
             const SizedBox(height: 8),
             Text(
-              'Портфолио выполненных проектов и примеры нестандартных решений',
+              AppLocalizations.gallerySubtitle,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Theme.of(context).colorScheme.onBackground.withOpacity(0.6),
                   ),
@@ -60,9 +54,9 @@ class _GalleryPageState extends State<GalleryPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  for (int index = 0; index < _categories.length; index++) ...[
+                  for (int index = 0; index < categories.length; index++) ...[
                     FilterChip(
-                      label: Text(_categories[index]),
+                      label: Text(categories[index]),
                       selected: _selectedCategory == index,
                       onSelected: (_) {
                         setState(() => _selectedCategory = index);
@@ -102,15 +96,27 @@ class _GalleryPageState extends State<GalleryPage> {
             ),
             const SizedBox(height: 40),
             Section(
-              title: 'Наша статистика',
+              title: AppLocalizations.galleryStatsSectionTitle,
               child: Wrap(
                 spacing: 16,
                 runSpacing: 16,
-                children: const [
-                  _StatCard(title: '2000+', subtitle: 'Установленных систем'),
-                  _StatCard(title: '500+', subtitle: 'Обслуживаемых объектов'),
-                  _StatCard(title: '24/7', subtitle: 'Служба поддержки'),
-                  _StatCard(title: '15+', subtitle: 'Лет на рынке'),
+                children: [
+                  _StatCard(
+                    title: AppLocalizations.galleryStatInstallations,
+                    subtitle: AppLocalizations.galleryStatInstallationsSubtitle,
+                  ),
+                  _StatCard(
+                    title: AppLocalizations.galleryStatServiced,
+                    subtitle: AppLocalizations.galleryStatServicedSubtitle,
+                  ),
+                  _StatCard(
+                    title: AppLocalizations.galleryStatSupport,
+                    subtitle: AppLocalizations.galleryStatSupportSubtitle,
+                  ),
+                  _StatCard(
+                    title: AppLocalizations.galleryStatExperience,
+                    subtitle: AppLocalizations.galleryStatExperienceSubtitle,
+                  ),
                 ],
               ),
             ),

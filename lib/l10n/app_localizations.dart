@@ -92,6 +92,42 @@ class AppLocalizations {
   static String get serviceDemountDesc => current.serviceDemountDesc;
   static String get serviceConsultation => current.serviceConsultation;
   static String get serviceConsultationDesc => current.serviceConsultationDesc;
+  static String get serviceInstallHeading => current.serviceInstallHeading;
+  static String get serviceInstallText => current.serviceInstallText;
+  static String get serviceDetailStandardTitle => current.serviceDetailStandardTitle;
+  static String get serviceDetailStandardDescription => current.serviceDetailStandardDescription;
+  static String get serviceDetailAdvancedTitle => current.serviceDetailAdvancedTitle;
+  static String get serviceDetailAdvancedDescription => current.serviceDetailAdvancedDescription;
+  static String get serviceDetailMultiTitle => current.serviceDetailMultiTitle;
+  static String get serviceDetailMultiDescription => current.serviceDetailMultiDescription;
+  static String get serviceDetailPremiumTitle => current.serviceDetailPremiumTitle;
+  static String get serviceDetailPremiumDescription => current.serviceDetailPremiumDescription;
+  static String get serviceDetailStandardPrice => current.serviceDetailStandardPrice;
+  static String get serviceDetailAdvancedPrice => current.serviceDetailAdvancedPrice;
+  static String get serviceDetailMultiPrice => current.serviceDetailMultiPrice;
+  static String get serviceDetailPremiumPrice => current.serviceDetailPremiumPrice;
+  static String get serviceDetailCleaningBasicPrice => current.serviceDetailCleaningBasicPrice;
+  static String get serviceDetailCleaningDeepPrice => current.serviceDetailCleaningDeepPrice;
+  static String get serviceDetailDiagnosticsPrice => current.serviceDetailDiagnosticsPrice;
+  static String get serviceDetailCompressorPrice => current.serviceDetailCompressorPrice;
+  static String get serviceDetailBoardPrice => current.serviceDetailBoardPrice;
+  static String get serviceDetailFreonPrice => current.serviceDetailFreonPrice;
+  static String get serviceMaintenanceSubtitleDetailed => current.serviceMaintenanceSubtitleDetailed;
+  static String get serviceMaintenanceHeading => current.serviceMaintenanceHeading;
+  static String get serviceMaintenanceText => current.serviceMaintenanceText;
+  static String get serviceDetailCleaningBasicTitle => current.serviceDetailCleaningBasicTitle;
+  static String get serviceDetailCleaningBasicDescription => current.serviceDetailCleaningBasicDescription;
+  static String get serviceDetailCleaningDeepTitle => current.serviceDetailCleaningDeepTitle;
+  static String get serviceDetailCleaningDeepDescription => current.serviceDetailCleaningDeepDescription;
+  static String get serviceDetailDiagnosticsTitle => current.serviceDetailDiagnosticsTitle;
+  static String get serviceDetailDiagnosticsDescription => current.serviceDetailDiagnosticsDescription;
+  static String get serviceRepairSubtitleDetailed => current.serviceRepairSubtitleDetailed;
+  static String get serviceDetailCompressorTitle => current.serviceDetailCompressorTitle;
+  static String get serviceDetailCompressorDescription => current.serviceDetailCompressorDescription;
+  static String get serviceDetailBoardTitle => current.serviceDetailBoardTitle;
+  static String get serviceDetailBoardDescription => current.serviceDetailBoardDescription;
+  static String get serviceDetailFreonTitle => current.serviceDetailFreonTitle;
+  static String get serviceDetailFreonDescription => current.serviceDetailFreonDescription;
 
   // Прайс-лист
   static String get priceListTitle => current.priceListTitle;
@@ -113,6 +149,23 @@ class AppLocalizations {
   static String get galleryMaintenance => current.galleryMaintenance;
   static String get galleryRepair => current.galleryRepair;
   static String get galleryStatsTitle => current.galleryStatsTitle;
+  static String get galleryStatsSectionTitle => current.galleryStatsSectionTitle;
+  static String get galleryStatInstallations => current.galleryStatInstallations;
+  static String get galleryStatInstallationsSubtitle => current.galleryStatInstallationsSubtitle;
+  static String get galleryStatServiced => current.galleryStatServiced;
+  static String get galleryStatServicedSubtitle => current.galleryStatServicedSubtitle;
+  static String get galleryStatSupport => current.galleryStatSupport;
+  static String get galleryStatSupportSubtitle => current.galleryStatSupportSubtitle;
+  static String get galleryStatExperience => current.galleryStatExperience;
+  static String get galleryStatExperienceSubtitle => current.galleryStatExperienceSubtitle;
+  static List<String> get galleryDescriptions => [
+        current.galleryDescription1,
+        current.galleryDescription2,
+        current.galleryDescription3,
+        current.galleryDescription4,
+        current.galleryDescription5,
+        current.galleryDescription6,
+      ];
 
   // Процесс
   static String get processTitle => current.processTitle;
@@ -128,6 +181,23 @@ class AppLocalizations {
   static String get processStep4Desc => current.processStep4Desc;
   static String get processStep5Title => current.processStep5Title;
   static String get processStep5Desc => current.processStep5Desc;
+  static String get processBenefitsTitle => current.processBenefitsTitle;
+  static String get processBenefitsSubtitle => current.processBenefitsSubtitle;
+  static String get processBenefit1Title => current.processBenefit1Title;
+  static String get processBenefit1Description => current.processBenefit1Description;
+  static String get processBenefit2Title => current.processBenefit2Title;
+  static String get processBenefit2Description => current.processBenefit2Description;
+  static String get processBenefit3Title => current.processBenefit3Title;
+  static String get processBenefit3Description => current.processBenefit3Description;
+  static String get processBenefit4Title => current.processBenefit4Title;
+  static String get processBenefit4Description => current.processBenefit4Description;
+  static String get processFAQTitle => current.processFAQTitle;
+  static String get processFAQQuestion1 => current.processFAQQuestion1;
+  static String get processFAQAnswer1 => current.processFAQAnswer1;
+  static String get processFAQQuestion2 => current.processFAQQuestion2;
+  static String get processFAQAnswer2 => current.processFAQAnswer2;
+  static String get processFAQQuestion3 => current.processFAQQuestion3;
+  static String get processFAQAnswer3 => current.processFAQAnswer3;
 
   // Контакты
   static String get contactsTitle => current.contactsTitle;
@@ -145,6 +215,21 @@ class AppLocalizations {
   static String get contactsFormSuccess => current.contactsFormSuccess;
   static String get contactsFormNameError => current.contactsFormNameError;
   static String get contactsFormPhoneError => current.contactsFormPhoneError;
+  static String get contactsInfoTitle => current.contactsInfoTitle;
+  static String get contactsAddressTitle => current.contactsAddressTitle;
+  static String get contactsAddressValue => current.contactsAddressValue;
+  static String get contactsPhoneTitle => current.contactsPhoneTitle;
+  static String get contactsPhoneValue => current.contactsPhoneValue;
+  static String get contactsEmailTitle => current.contactsEmailTitle;
+  static String get contactsEmailValue => current.contactsEmailValue;
+  static String get contactsScheduleTitle => current.contactsScheduleTitle;
+  static String get contactsScheduleValue => current.contactsScheduleValue;
+  static String get contactsSocialTitle => current.contactsSocialTitle;
+  static String get contactsSocialTelegram => current.contactsSocialTelegram;
+  static String get contactsSocialWhatsApp => current.contactsSocialWhatsApp;
+  static String get contactsSocialVkontakte => current.contactsSocialVkontakte;
+  static String get contactsMapPlaceholderTitle => current.contactsMapPlaceholderTitle;
+  static String get contactsMapPlaceholderSubtitle => current.contactsMapPlaceholderSubtitle;
 
   // CTA
   static String get ctaTitle => current.ctaTitle;

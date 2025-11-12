@@ -159,6 +159,62 @@ class StrapiService {
       serviceDemountDesc: json['serviceDemountDesc'] as String? ?? '',
       serviceConsultation: json['serviceConsultation'] as String? ?? '',
       serviceConsultationDesc: json['serviceConsultationDesc'] as String? ?? '',
+      serviceInstallHeading: json['serviceInstallHeading'] as String? ?? '',
+      serviceInstallText: json['serviceInstallText'] as String? ?? '',
+      serviceDetailStandardTitle: json['serviceDetailStandardTitle'] as String? ?? '',
+      serviceDetailStandardDescription:
+          json['serviceDetailStandardDescription'] as String? ?? '',
+      serviceDetailAdvancedTitle: json['serviceDetailAdvancedTitle'] as String? ?? '',
+      serviceDetailAdvancedDescription:
+          json['serviceDetailAdvancedDescription'] as String? ?? '',
+      serviceDetailMultiTitle: json['serviceDetailMultiTitle'] as String? ?? '',
+      serviceDetailMultiDescription:
+          json['serviceDetailMultiDescription'] as String? ?? '',
+      serviceDetailPremiumTitle: json['serviceDetailPremiumTitle'] as String? ?? '',
+      serviceDetailPremiumDescription:
+          json['serviceDetailPremiumDescription'] as String? ?? '',
+      serviceDetailStandardPrice: json['serviceDetailStandardPrice'] as String? ?? '',
+      serviceDetailAdvancedPrice: json['serviceDetailAdvancedPrice'] as String? ?? '',
+      serviceDetailMultiPrice: json['serviceDetailMultiPrice'] as String? ?? '',
+      serviceDetailPremiumPrice: json['serviceDetailPremiumPrice'] as String? ?? '',
+      serviceDetailCleaningBasicPrice:
+          json['serviceDetailCleaningBasicPrice'] as String? ?? '',
+      serviceDetailCleaningDeepPrice:
+          json['serviceDetailCleaningDeepPrice'] as String? ?? '',
+      serviceDetailDiagnosticsPrice:
+          json['serviceDetailDiagnosticsPrice'] as String? ?? '',
+      serviceDetailCompressorPrice:
+          json['serviceDetailCompressorPrice'] as String? ?? '',
+      serviceDetailBoardPrice: json['serviceDetailBoardPrice'] as String? ?? '',
+      serviceDetailFreonPrice: json['serviceDetailFreonPrice'] as String? ?? '',
+      serviceMaintenanceSubtitleDetailed:
+          json['serviceMaintenanceSubtitleDetailed'] as String? ?? '',
+      serviceMaintenanceHeading: json['serviceMaintenanceHeading'] as String? ?? '',
+      serviceMaintenanceText: json['serviceMaintenanceText'] as String? ?? '',
+      serviceDetailCleaningBasicTitle:
+          json['serviceDetailCleaningBasicTitle'] as String? ?? '',
+      serviceDetailCleaningBasicDescription:
+          json['serviceDetailCleaningBasicDescription'] as String? ?? '',
+      serviceDetailCleaningDeepTitle:
+          json['serviceDetailCleaningDeepTitle'] as String? ?? '',
+      serviceDetailCleaningDeepDescription:
+          json['serviceDetailCleaningDeepDescription'] as String? ?? '',
+      serviceDetailDiagnosticsTitle:
+          json['serviceDetailDiagnosticsTitle'] as String? ?? '',
+      serviceDetailDiagnosticsDescription:
+          json['serviceDetailDiagnosticsDescription'] as String? ?? '',
+      serviceRepairSubtitleDetailed:
+          json['serviceRepairSubtitleDetailed'] as String? ?? '',
+      serviceDetailCompressorTitle:
+          json['serviceDetailCompressorTitle'] as String? ?? '',
+      serviceDetailCompressorDescription:
+          json['serviceDetailCompressorDescription'] as String? ?? '',
+      serviceDetailBoardTitle: json['serviceDetailBoardTitle'] as String? ?? '',
+      serviceDetailBoardDescription:
+          json['serviceDetailBoardDescription'] as String? ?? '',
+      serviceDetailFreonTitle: json['serviceDetailFreonTitle'] as String? ?? '',
+      serviceDetailFreonDescription:
+          json['serviceDetailFreonDescription'] as String? ?? '',
       priceListTitle: json['priceListTitle'] as String? ?? '',
       priceListSubtitle: json['priceListSubtitle'] as String? ?? '',
       priceButton: json['priceButton'] as String? ?? '',
@@ -176,6 +232,27 @@ class StrapiService {
       galleryMaintenance: json['galleryMaintenance'] as String? ?? '',
       galleryRepair: json['galleryRepair'] as String? ?? '',
       galleryStatsTitle: json['galleryStatsTitle'] as String? ?? '',
+      galleryStatsSectionTitle:
+          json['galleryStatsSectionTitle'] as String? ?? '',
+      galleryStatInstallations:
+          json['galleryStatInstallations'] as String? ?? '',
+      galleryStatInstallationsSubtitle:
+          json['galleryStatInstallationsSubtitle'] as String? ?? '',
+      galleryStatServiced: json['galleryStatServiced'] as String? ?? '',
+      galleryStatServicedSubtitle:
+          json['galleryStatServicedSubtitle'] as String? ?? '',
+      galleryStatSupport: json['galleryStatSupport'] as String? ?? '',
+      galleryStatSupportSubtitle:
+          json['galleryStatSupportSubtitle'] as String? ?? '',
+      galleryStatExperience: json['galleryStatExperience'] as String? ?? '',
+      galleryStatExperienceSubtitle:
+          json['galleryStatExperienceSubtitle'] as String? ?? '',
+      galleryDescription1: json['galleryDescription1'] as String? ?? '',
+      galleryDescription2: json['galleryDescription2'] as String? ?? '',
+      galleryDescription3: json['galleryDescription3'] as String? ?? '',
+      galleryDescription4: json['galleryDescription4'] as String? ?? '',
+      galleryDescription5: json['galleryDescription5'] as String? ?? '',
+      galleryDescription6: json['galleryDescription6'] as String? ?? '',
       processTitle: json['processTitle'] as String? ?? '',
       processSubtitle: json['processSubtitle'] as String? ?? '',
       processStepsTitle: json['processStepsTitle'] as String? ?? '',
@@ -189,6 +266,27 @@ class StrapiService {
       processStep4Desc: json['processStep4Desc'] as String? ?? '',
       processStep5Title: json['processStep5Title'] as String? ?? '',
       processStep5Desc: json['processStep5Desc'] as String? ?? '',
+      processBenefitsTitle: json['processBenefitsTitle'] as String? ?? '',
+      processBenefitsSubtitle: json['processBenefitsSubtitle'] as String? ?? '',
+      processBenefit1Title: json['processBenefit1Title'] as String? ?? '',
+      processBenefit1Description:
+          json['processBenefit1Description'] as String? ?? '',
+      processBenefit2Title: json['processBenefit2Title'] as String? ?? '',
+      processBenefit2Description:
+          json['processBenefit2Description'] as String? ?? '',
+      processBenefit3Title: json['processBenefit3Title'] as String? ?? '',
+      processBenefit3Description:
+          json['processBenefit3Description'] as String? ?? '',
+      processBenefit4Title: json['processBenefit4Title'] as String? ?? '',
+      processBenefit4Description:
+          json['processBenefit4Description'] as String? ?? '',
+      processFAQTitle: json['processFAQTitle'] as String? ?? '',
+      processFAQQuestion1: json['processFAQQuestion1'] as String? ?? '',
+      processFAQAnswer1: json['processFAQAnswer1'] as String? ?? '',
+      processFAQQuestion2: json['processFAQQuestion2'] as String? ?? '',
+      processFAQAnswer2: json['processFAQAnswer2'] as String? ?? '',
+      processFAQQuestion3: json['processFAQQuestion3'] as String? ?? '',
+      processFAQAnswer3: json['processFAQAnswer3'] as String? ?? '',
       contactsTitle: json['contactsTitle'] as String? ?? '',
       contactsSubtitle: json['contactsSubtitle'] as String? ?? '',
       contactsMapTitle: json['contactsMapTitle'] as String? ?? '',
@@ -204,6 +302,23 @@ class StrapiService {
       contactsFormSuccess: json['contactsFormSuccess'] as String? ?? '',
       contactsFormNameError: json['contactsFormNameError'] as String? ?? '',
       contactsFormPhoneError: json['contactsFormPhoneError'] as String? ?? '',
+      contactsInfoTitle: json['contactsInfoTitle'] as String? ?? '',
+      contactsAddressTitle: json['contactsAddressTitle'] as String? ?? '',
+      contactsAddressValue: json['contactsAddressValue'] as String? ?? '',
+      contactsPhoneTitle: json['contactsPhoneTitle'] as String? ?? '',
+      contactsPhoneValue: json['contactsPhoneValue'] as String? ?? '',
+      contactsEmailTitle: json['contactsEmailTitle'] as String? ?? '',
+      contactsEmailValue: json['contactsEmailValue'] as String? ?? '',
+      contactsScheduleTitle: json['contactsScheduleTitle'] as String? ?? '',
+      contactsScheduleValue: json['contactsScheduleValue'] as String? ?? '',
+      contactsSocialTitle: json['contactsSocialTitle'] as String? ?? '',
+      contactsSocialTelegram: json['contactsSocialTelegram'] as String? ?? '',
+      contactsSocialWhatsApp: json['contactsSocialWhatsApp'] as String? ?? '',
+      contactsSocialVkontakte: json['contactsSocialVkontakte'] as String? ?? '',
+      contactsMapPlaceholderTitle:
+          json['contactsMapPlaceholderTitle'] as String? ?? '',
+      contactsMapPlaceholderSubtitle:
+          json['contactsMapPlaceholderSubtitle'] as String? ?? '',
       ctaTitle: json['ctaTitle'] as String? ?? '',
       ctaDescription: json['ctaDescription'] as String? ?? '',
       ctaButtonOrder: json['ctaButtonOrder'] as String? ?? '',
@@ -260,6 +375,54 @@ class StrapiService {
       serviceDemountDesc: 'Аккуратный демонтаж с сохранением всех элементов',
       serviceConsultation: 'Консультация',
       serviceConsultationDesc: 'Бесплатная консультация по выбору оборудования',
+      serviceInstallHeading: 'Полный комплекс работ по монтажу',
+      serviceInstallText:
+          'Мы осуществляем профессиональный монтаж кондиционеров всех типов: настенные сплит-системы, кассетные, канальные, напольно-потолочные и мульти-сплит системы. Каждый монтаж включает полный комплекс работ с гарантией качества.',
+      serviceDetailStandardTitle: 'Стандартный монтаж',
+      serviceDetailStandardDescription:
+          'Установка внутреннего и внешнего блоков, подключение коммуникаций',
+      serviceDetailAdvancedTitle: 'Сложный монтаж',
+      serviceDetailAdvancedDescription:
+          'Дополнительные работы: штробление стен, протяжка трасс более 5 м',
+      serviceDetailMultiTitle: 'Мульти-сплит системы',
+      serviceDetailMultiDescription:
+          'Установка систем с несколькими внутренними блоками',
+      serviceDetailPremiumTitle: 'Премиум монтаж',
+      serviceDetailPremiumDescription:
+          'Полный комплекс работ с использованием премиальных материалов',
+      serviceDetailStandardPrice: 'от 6 000 ₽',
+      serviceDetailAdvancedPrice: 'от 10 000 ₽',
+      serviceDetailMultiPrice: 'от 15 000 ₽',
+      serviceDetailPremiumPrice: 'от 20 000 ₽',
+      serviceDetailCleaningBasicPrice: 'от 1 500 ₽',
+      serviceDetailCleaningDeepPrice: 'от 3 000 ₽',
+      serviceDetailDiagnosticsPrice: 'от 1 000 ₽',
+      serviceDetailCompressorPrice: 'от 8 000 ₽',
+      serviceDetailBoardPrice: 'от 6 000 ₽',
+      serviceDetailFreonPrice: 'от 2 500 ₽',
+      serviceMaintenanceSubtitleDetailed:
+          'Регулярное обслуживание для долговечной работы',
+      serviceMaintenanceHeading: 'Комплексное сервисное обслуживание',
+      serviceMaintenanceText:
+          'Регулярная чистка и профилактика предотвращает поломки, снижает расход электроэнергии и повышает эффективность системы. Мы используем безопасные моющие средства и профессиональное оборудование.',
+      serviceDetailCleaningBasicTitle: 'Базовая чистка',
+      serviceDetailCleaningBasicDescription:
+          'Очистка фильтров, дезинфекция испарителя',
+      serviceDetailCleaningDeepTitle: 'Глубокая чистка',
+      serviceDetailCleaningDeepDescription:
+          'Разборка внутреннего блока, химическая чистка теплообменника',
+      serviceDetailDiagnosticsTitle: 'Диагностика',
+      serviceDetailDiagnosticsDescription:
+          'Проверка давления хладагента, электроники и дренажа',
+      serviceRepairSubtitleDetailed: 'Быстрое и качественное устранение неисправностей',
+      serviceDetailCompressorTitle: 'Замена компрессора',
+      serviceDetailCompressorDescription:
+          'Подбор и замена компрессора, проверка герметичности',
+      serviceDetailBoardTitle: 'Ремонт платы управления',
+      serviceDetailBoardDescription: 'Диагностика и ремонт электроники, прошивка',
+      serviceDetailFreonTitle: 'Заправка фреоном',
+      serviceDetailFreonDescription:
+          'Поиск утечек, вакуумирование, дозаправка',
       priceListTitle: 'Прайс-лист',
       priceListSubtitle: 'Прозрачные цены без скрытых платежей',
       priceButton: 'Получить подробный расчет',
@@ -277,6 +440,21 @@ class StrapiService {
       galleryMaintenance: 'Обслуживание',
       galleryRepair: 'Ремонт',
       galleryStatsTitle: 'Наша статистика',
+      galleryStatsSectionTitle: 'Наша статистика',
+      galleryStatInstallations: '2000+',
+      galleryStatInstallationsSubtitle: 'Установленных систем',
+      galleryStatServiced: '500+',
+      galleryStatServicedSubtitle: 'Обслуживаемых объектов',
+      galleryStatSupport: '24/7',
+      galleryStatSupportSubtitle: 'Служба поддержки',
+      galleryStatExperience: '15+',
+      galleryStatExperienceSubtitle: 'Лет на рынке',
+      galleryDescription1: 'Установка сплит-системы в квартире',
+      galleryDescription2: 'Монтаж кондиционера в офисе',
+      galleryDescription3: 'Обслуживание торгового центра',
+      galleryDescription4: 'Ремонт промышленного кондиционера',
+      galleryDescription5: 'Монтаж мульти-сплит системы',
+      galleryDescription6: 'Профилактика системы кондиционирования',
       processTitle: 'Процесс работы',
       processSubtitle: 'Четкий алгоритм действий от заявки до сдачи объекта',
       processStepsTitle: 'Этапы сотрудничества',
@@ -290,14 +468,35 @@ class StrapiService {
       processStep4Desc: 'Профессиональный монтаж с гарантией качества',
       processStep5Title: 'Сдача объекта',
       processStep5Desc: 'Проверка работы и инструктаж по эксплуатации',
+      processBenefitsTitle: 'Преимущества сотрудничества',
+      processBenefitsSubtitle: 'Мы сопровождаем проект на каждом этапе',
+      processBenefit1Title: 'Гарантия на работы',
+      processBenefit1Description: 'Гарантия 24 месяца на монтаж и сервисные работы. Работаем по договору.',
+      processBenefit2Title: 'Прозрачная смета',
+      processBenefit2Description:
+          'Подробный расчет без скрытых платежей. Стоимость фиксируется до начала работ.',
+      processBenefit3Title: 'Собственные бригады',
+      processBenefit3Description:
+          'Опытные специалисты с профильным образованием и допусками.',
+      processBenefit4Title: 'Качественные материалы',
+      processBenefit4Description:
+          'Используем проверенные бренды оборудования и комплектующих.',
+      processFAQTitle: 'Частые вопросы',
+      processFAQQuestion1: 'Сколько занимает монтаж кондиционера?',
+      processFAQAnswer1:
+          'Стандартный монтаж сплит-системы занимает 3–4 часа. Сложные проекты с трассами могут потребовать до 1 рабочего дня.',
+      processFAQQuestion2: 'Когда проводить обслуживание кондиционера?',
+      processFAQAnswer2:
+          'Рекомендуем проводить сервисное обслуживание два раза в год: перед летним сезоном и после его окончания.',
+      processFAQQuestion3: 'Какая гарантия предоставляется?',
+      processFAQAnswer3:
+          'На монтажные работы — 24 месяца. На оборудование распространяется заводская гарантия производителя.',
       contactsTitle: 'Контакты',
-      contactsSubtitle:
-          'Свяжитесь с нами для консультации или оформления заказа',
+      contactsSubtitle: 'Свяжитесь с нами для консультации или оформления заказа',
       contactsMapTitle: 'Мы на карте',
       contactsMapSubtitle: 'Наш офис в Нижнем Новгороде',
       contactsFormTitle: 'Оставить заявку',
-      contactsFormSubtitle:
-          'Заполните форму и мы свяжемся с вами в течение 15 минут',
+      contactsFormSubtitle: 'Заполните форму и мы свяжемся с вами в течение 15 минут',
       contactsFormName: 'Ваше имя',
       contactsFormPhone: 'Телефон',
       contactsFormEmail: 'Email (необязательно)',
@@ -308,6 +507,21 @@ class StrapiService {
           'Заявка отправлена! Мы свяжемся с вами в ближайшее время.',
       contactsFormNameError: 'Пожалуйста, введите ваше имя',
       contactsFormPhoneError: 'Пожалуйста, введите ваш телефон',
+      contactsInfoTitle: 'Контактная информация',
+      contactsAddressTitle: 'Адрес',
+      contactsAddressValue: 'Нижний Новгород, ул. Ленина, 12',
+      contactsPhoneTitle: 'Телефон',
+      contactsPhoneValue: '+7 (831) 123-45-67',
+      contactsEmailTitle: 'Email',
+      contactsEmailValue: 'info@skidanov-service.ru',
+      contactsScheduleTitle: 'График работы',
+      contactsScheduleValue: 'Пн-Пт: 9:00 – 20:00\nСб: 10:00 – 18:00\nВс: по записи',
+      contactsSocialTitle: 'Мы в социальных сетях',
+      contactsSocialTelegram: 'Telegram',
+      contactsSocialWhatsApp: 'WhatsApp',
+      contactsSocialVkontakte: 'ВКонтакте',
+      contactsMapPlaceholderTitle: 'Интерактивная карта появится на этом месте',
+      contactsMapPlaceholderSubtitle: 'Подключите виджет Яндекс.Карт или Google Maps',
       ctaTitle: 'Готовы начать проект?',
       ctaDescription:
           'Оставьте заявку и получите бесплатную консультацию нашего специалиста',
