@@ -25,7 +25,7 @@ class StrapiService {
   }
 
   /// Получить локализацию из Strapi
-  /// 
+  ///
   /// [locale] - язык локализации (по умолчанию 'ru')
   /// [forceRefresh] - принудительно обновить из API (игнорировать кеш)
   Future<LocalizationAttributes> getLocalization({
@@ -62,7 +62,8 @@ class StrapiService {
           final dataList = jsonData['data'] as List;
           if (dataList.isNotEmpty) {
             final itemData = dataList[0] as Map<String, dynamic>;
-            final attributesJson = itemData['attributes'] as Map<String, dynamic>;
+            final attributesJson =
+                itemData['attributes'] as Map<String, dynamic>;
             final attributes = _parseLocalizationAttributes(attributesJson);
             final item = StrapiLocalization(
               id: itemData['id'] as int,
@@ -96,9 +97,7 @@ class StrapiService {
 
         return _cachedLocalization!;
       } else {
-        throw Exception(
-          'Failed to load localization: ${response.statusCode}',
-        );
+        throw Exception('Failed to load localization: ${response.statusCode}');
       }
     } catch (e) {
       // Если не удалось загрузить из Strapi, возвращаем дефолтные значения
@@ -147,8 +146,7 @@ class StrapiService {
       servicesTitle: json['servicesTitle'] as String? ?? '',
       servicesSubtitle: json['servicesSubtitle'] as String? ?? '',
       serviceInstallation: json['serviceInstallation'] as String? ?? '',
-      serviceInstallationDesc:
-          json['serviceInstallationDesc'] as String? ?? '',
+      serviceInstallationDesc: json['serviceInstallationDesc'] as String? ?? '',
       serviceMaintenance: json['serviceMaintenance'] as String? ?? '',
       serviceMaintenanceDesc: json['serviceMaintenanceDesc'] as String? ?? '',
       serviceRepair: json['serviceRepair'] as String? ?? '',
@@ -161,22 +159,28 @@ class StrapiService {
       serviceConsultationDesc: json['serviceConsultationDesc'] as String? ?? '',
       serviceInstallHeading: json['serviceInstallHeading'] as String? ?? '',
       serviceInstallText: json['serviceInstallText'] as String? ?? '',
-      serviceDetailStandardTitle: json['serviceDetailStandardTitle'] as String? ?? '',
+      serviceDetailStandardTitle:
+          json['serviceDetailStandardTitle'] as String? ?? '',
       serviceDetailStandardDescription:
           json['serviceDetailStandardDescription'] as String? ?? '',
-      serviceDetailAdvancedTitle: json['serviceDetailAdvancedTitle'] as String? ?? '',
+      serviceDetailAdvancedTitle:
+          json['serviceDetailAdvancedTitle'] as String? ?? '',
       serviceDetailAdvancedDescription:
           json['serviceDetailAdvancedDescription'] as String? ?? '',
       serviceDetailMultiTitle: json['serviceDetailMultiTitle'] as String? ?? '',
       serviceDetailMultiDescription:
           json['serviceDetailMultiDescription'] as String? ?? '',
-      serviceDetailPremiumTitle: json['serviceDetailPremiumTitle'] as String? ?? '',
+      serviceDetailPremiumTitle:
+          json['serviceDetailPremiumTitle'] as String? ?? '',
       serviceDetailPremiumDescription:
           json['serviceDetailPremiumDescription'] as String? ?? '',
-      serviceDetailStandardPrice: json['serviceDetailStandardPrice'] as String? ?? '',
-      serviceDetailAdvancedPrice: json['serviceDetailAdvancedPrice'] as String? ?? '',
+      serviceDetailStandardPrice:
+          json['serviceDetailStandardPrice'] as String? ?? '',
+      serviceDetailAdvancedPrice:
+          json['serviceDetailAdvancedPrice'] as String? ?? '',
       serviceDetailMultiPrice: json['serviceDetailMultiPrice'] as String? ?? '',
-      serviceDetailPremiumPrice: json['serviceDetailPremiumPrice'] as String? ?? '',
+      serviceDetailPremiumPrice:
+          json['serviceDetailPremiumPrice'] as String? ?? '',
       serviceDetailCleaningBasicPrice:
           json['serviceDetailCleaningBasicPrice'] as String? ?? '',
       serviceDetailCleaningDeepPrice:
@@ -189,7 +193,8 @@ class StrapiService {
       serviceDetailFreonPrice: json['serviceDetailFreonPrice'] as String? ?? '',
       serviceMaintenanceSubtitleDetailed:
           json['serviceMaintenanceSubtitleDetailed'] as String? ?? '',
-      serviceMaintenanceHeading: json['serviceMaintenanceHeading'] as String? ?? '',
+      serviceMaintenanceHeading:
+          json['serviceMaintenanceHeading'] as String? ?? '',
       serviceMaintenanceText: json['serviceMaintenanceText'] as String? ?? '',
       serviceDetailCleaningBasicTitle:
           json['serviceDetailCleaningBasicTitle'] as String? ?? '',
@@ -329,13 +334,13 @@ class StrapiService {
 
   /// Получить дефолтную локализацию (fallback)
   LocalizationAttributes getDefaultLocalization() {
-      // Возвращаем дефолтные значения как fallback
-      // В реальном приложении можно использовать пакет flutter_localizations
-      return LocalizationAttributes(
-      appTitle: 'Скиданов Сервис — Нижний Новгород',
-      companyName: 'Скиданов Сервис',
+    // Возвращаем дефолтные значения как fallback
+    // В реальном приложении можно использовать пакет flutter_localizations
+    return LocalizationAttributes(
+      appTitle: 'ВетрецНН — Нижний Новгород',
+      companyName: 'ВетрецНН',
       region: 'Нижний Новгород',
-      footerText: '© 2024 Скиданов Сервис — Все права защищены',
+      footerText: '© 2024 ВетрецНН — Все права защищены',
       navHome: 'Главная',
       navServices: 'Услуги',
       navProcess: 'Процесс',
@@ -347,28 +352,29 @@ class StrapiService {
           'Более 15 лет устанавливаем и обслуживаем кондиционеры в Нижнем Новгороде. Гарантия качества, доступные цены и профессиональный подход.',
       heroButtonCalculate: 'Рассчитать стоимость',
       heroButtonConsultation: 'Бесплатная консультация',
-      heroPriceFrom: 'Установка от 6 000 ₽',
-      heroPriceDescription: 'Быстрый и аккуратный монтаж с гарантией 2 года',
+      heroPriceFrom: 'Установка от 10 000 ₽',
+      heroPriceDescription: 'Быстрый и аккуратный монтаж с гарантией 1 год',
       statYears: 'Лет опыта',
       statClients: 'Довольных клиентов',
       statSupport: 'Поддержка',
       aboutTitle: 'О компании',
       aboutSubtitle: 'Более 15 лет профессиональной работы в Нижнем Новгороде',
       aboutDescription:
-          'Скиданов Сервис — это команда профессионалов с многолетним опытом работы в области климатической техники. Мы специализируемся на установке, обслуживании и ремонте кондиционеров любой сложности.',
-      featureGuarantee: 'Гарантия 2 года',
+          '3)ВетрецНН — это команда профессионалов с многолетним опытом работы в области климатической техники. Мы специализируемся на продаже, установке и обслуживании кондиционеров любой сложности.',
+      featureGuarantee: 'Гарантия 1 год',
       featureMasters: 'Опытные мастера',
       featureSchedule: 'Работаем 24/7',
       featureQuality: '100% качество',
       servicesTitle: 'Наши услуги',
       servicesSubtitle: 'Полный спектр услуг по кондиционированию',
       serviceInstallation: 'Установка кондиционеров',
-      serviceInstallationDesc: 'Профессиональный монтаж сплит-систем любой мощности',
+      serviceInstallationDesc:
+          'Профессиональный монтаж сплит-систем любой мощности',
       serviceMaintenance: 'Обслуживание',
       serviceMaintenanceDesc:
           'Регулярная чистка и профилактика систем кондиционирования',
-      serviceRepair: 'Ремонт',
-      serviceRepairDesc: 'Быстрый и качественный ремонт любой сложности',
+      serviceRepair: 'Удалить целиком блок',
+      serviceRepairDesc: 'Удалить целиком блок',
       serviceRefill: 'Заправка фреоном',
       serviceRefillDesc: 'Заправка и диагностика холодильного контура',
       serviceDemount: 'Демонтаж',
@@ -378,27 +384,27 @@ class StrapiService {
       serviceInstallHeading: 'Полный комплекс работ по монтажу',
       serviceInstallText:
           'Мы осуществляем профессиональный монтаж кондиционеров всех типов: настенные сплит-системы, кассетные, канальные, напольно-потолочные и мульти-сплит системы. Каждый монтаж включает полный комплекс работ с гарантией качества.',
-      serviceDetailStandardTitle: 'Стандартный монтаж',
+      serviceDetailStandardTitle: 'Стандартный монтаж трасса до 3 м',
       serviceDetailStandardDescription:
           'Установка внутреннего и внешнего блоков, подключение коммуникаций',
-      serviceDetailAdvancedTitle: 'Сложный монтаж',
+      serviceDetailAdvancedTitle: 'Сложный монтаж трасса до 3м',
       serviceDetailAdvancedDescription:
-          'Дополнительные работы: штробление стен, протяжка трасс более 5 м',
-      serviceDetailMultiTitle: 'Мульти-сплит системы',
+          'Дополнительные работы: штробление стен, протяжка трасс до 3 м',
+      serviceDetailMultiTitle: 'Мульти-сплит системы трасса до 5 м',
       serviceDetailMultiDescription:
           'Установка систем с несколькими внутренними блоками',
-      serviceDetailPremiumTitle: 'Премиум монтаж',
+      serviceDetailPremiumTitle: 'Премиум монтаж трасса до 5м',
       serviceDetailPremiumDescription:
           'Полный комплекс работ с использованием премиальных материалов',
-      serviceDetailStandardPrice: 'от 6 000 ₽',
+      serviceDetailStandardPrice: 'от 13 000 ₽',
       serviceDetailAdvancedPrice: 'от 10 000 ₽',
       serviceDetailMultiPrice: 'от 15 000 ₽',
       serviceDetailPremiumPrice: 'от 20 000 ₽',
-      serviceDetailCleaningBasicPrice: 'от 1 500 ₽',
-      serviceDetailCleaningDeepPrice: 'от 3 000 ₽',
-      serviceDetailDiagnosticsPrice: 'от 1 000 ₽',
-      serviceDetailCompressorPrice: 'от 8 000 ₽',
-      serviceDetailBoardPrice: 'от 6 000 ₽',
+      serviceDetailCleaningBasicPrice: 'от 3 500 ₽',
+      serviceDetailCleaningDeepPrice: 'от 5 000 ₽',
+      serviceDetailDiagnosticsPrice: 'от 2 000 ₽',
+      /*      serviceDetailCompressorPrice: 'от 8 000 ₽',
+      serviceDetailBoardPrice: 'от 6 000 ₽',*/
       serviceDetailFreonPrice: 'от 2 500 ₽',
       serviceMaintenanceSubtitleDetailed:
           'Регулярное обслуживание для долговечной работы',
@@ -414,12 +420,12 @@ class StrapiService {
       serviceDetailDiagnosticsTitle: 'Диагностика',
       serviceDetailDiagnosticsDescription:
           'Проверка давления хладагента, электроники и дренажа',
-      serviceRepairSubtitleDetailed: 'Быстрое и качественное устранение неисправностей',
+      /*      serviceRepairSubtitleDetailed: 'Быстрое и качественное устранение неисправностей',
       serviceDetailCompressorTitle: 'Замена компрессора',
       serviceDetailCompressorDescription:
           'Подбор и замена компрессора, проверка герметичности',
       serviceDetailBoardTitle: 'Ремонт платы управления',
-      serviceDetailBoardDescription: 'Диагностика и ремонт электроники, прошивка',
+      serviceDetailBoardDescription: 'Диагностика и ремонт электроники, прошивка',*/
       serviceDetailFreonTitle: 'Заправка фреоном',
       serviceDetailFreonDescription:
           'Поиск утечек, вакуумирование, дозаправка',
@@ -471,32 +477,35 @@ class StrapiService {
       processBenefitsTitle: 'Преимущества сотрудничества',
       processBenefitsSubtitle: 'Мы сопровождаем проект на каждом этапе',
       processBenefit1Title: 'Гарантия на работы',
-      processBenefit1Description: 'Гарантия 24 месяца на монтаж и сервисные работы. Работаем по договору.',
+      processBenefit1Description:
+          'Гарантия 12 месяцев на монтаж и сервисные работы. Работаем по договору.',
       processBenefit2Title: 'Прозрачная смета',
       processBenefit2Description:
           'Подробный расчет без скрытых платежей. Стоимость фиксируется до начала работ.',
-      processBenefit3Title: 'Собственные бригады',
+/*      processBenefit3Title: 'Собственные бригады',
       processBenefit3Description:
-          'Опытные специалисты с профильным образованием и допусками.',
+          'Опытные специалисты с профильным образованием и допусками.',*/
       processBenefit4Title: 'Качественные материалы',
       processBenefit4Description:
           'Используем проверенные бренды оборудования и комплектующих.',
       processFAQTitle: 'Частые вопросы',
       processFAQQuestion1: 'Сколько занимает монтаж кондиционера?',
       processFAQAnswer1:
-          'Стандартный монтаж сплит-системы занимает 3–4 часа. Сложные проекты с трассами могут потребовать до 1 рабочего дня.',
+          'Стандартный монтаж сплит-системы занимает от 1 часа 30 минут. Сложные проекты с трассами могут потребовать до 1 рабочего дня.',
       processFAQQuestion2: 'Когда проводить обслуживание кондиционера?',
       processFAQAnswer2:
-          'Рекомендуем проводить сервисное обслуживание два раза в год: перед летним сезоном и после его окончания.',
+          'Рекомендуем проводить сервисное обслуживание один раз в год: перед летним сезоном или после его окончания.',
       processFAQQuestion3: 'Какая гарантия предоставляется?',
       processFAQAnswer3:
-          'На монтажные работы — 24 месяца. На оборудование распространяется заводская гарантия производителя.',
+          'На монтажные работы — 12 месяцев. На оборудование распространяется заводская гарантия производителя.',
       contactsTitle: 'Контакты',
-      contactsSubtitle: 'Свяжитесь с нами для консультации или оформления заказа',
-      contactsMapTitle: 'Мы на карте',
-      contactsMapSubtitle: 'Наш офис в Нижнем Новгороде',
+      contactsSubtitle:
+          'Свяжитесь с нами для консультации или оформления заказа',
+/*      contactsMapTitle: 'Мы на карте',
+      contactsMapSubtitle: 'Наш офис в Нижнем Новгороде',*/
       contactsFormTitle: 'Оставить заявку',
-      contactsFormSubtitle: 'Заполните форму и мы свяжемся с вами в течение 15 минут',
+      contactsFormSubtitle:
+          'Заполните форму и мы свяжемся с вами в течение 15 минут',
       contactsFormName: 'Ваше имя',
       contactsFormPhone: 'Телефон',
       contactsFormEmail: 'Email (необязательно)',
@@ -509,25 +518,27 @@ class StrapiService {
       contactsFormPhoneError: 'Пожалуйста, введите ваш телефон',
       contactsInfoTitle: 'Контактная информация',
       contactsAddressTitle: 'Адрес',
-      contactsAddressValue: 'Нижний Новгород, ул. Ленина, 12',
+      contactsAddressValue: 'Нижний Новгород',
       contactsPhoneTitle: 'Телефон',
-      contactsPhoneValue: '+7 (831) 123-45-67',
+      contactsPhoneValue: '+7 (920) 016-96-52',
       contactsEmailTitle: 'Email',
-      contactsEmailValue: 'info@skidanov-service.ru',
+      contactsEmailValue: 'vetrecnn@yandex.ru',
       contactsScheduleTitle: 'График работы',
-      contactsScheduleValue: 'Пн-Пт: 9:00 – 20:00\nСб: 10:00 – 18:00\nВс: по записи',
+      contactsScheduleValue:
+          'Пн-Пт: 9:00 – 20:00\nСб-Вс: по записи',
       contactsSocialTitle: 'Мы в социальных сетях',
       contactsSocialTelegram: 'Telegram',
       contactsSocialWhatsApp: 'WhatsApp',
       contactsSocialVkontakte: 'ВКонтакте',
       contactsMapPlaceholderTitle: 'Интерактивная карта появится на этом месте',
-      contactsMapPlaceholderSubtitle: 'Подключите виджет Яндекс.Карт или Google Maps',
+      contactsMapPlaceholderSubtitle:
+          'Подключите виджет Яндекс.Карт или Google Maps',
       ctaTitle: 'Готовы начать проект?',
       ctaDescription:
           'Оставьте заявку и получите бесплатную консультацию нашего специалиста',
       ctaButtonOrder: 'Заказать замер',
       ctaButtonAllServices: 'Все услуги',
-      error404: 'Страница не найдена',
+      error404: 'Страница не найдена', serviceDetailCompressorPrice: '', serviceDetailBoardPrice: '', serviceRepairSubtitleDetailed: '', serviceDetailCompressorTitle: '', serviceDetailCompressorDescription: '', serviceDetailBoardTitle: '', serviceDetailBoardDescription: '', processBenefit3Title: '', processBenefit3Description: '', contactsMapTitle: '', contactsMapSubtitle: '',
     );
   }
 }
